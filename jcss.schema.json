@@ -1,0 +1,48 @@
+{
+  "oneOf": [
+    {"$ref": "#/definitions/Style Sheet"},
+    {"$ref": "#/definitions/Style"}
+  ],
+  "definitions": {
+    "Style Sheet": {
+      "title": "JCSS Style Sheet",
+      "type": "array",
+      "items": {"$ref": "#/definitions/Rule"}    
+    },
+    "Rule": {
+      "title": "Rule",
+      "type": "array",
+      "minItems": 2,
+      "items": [
+        {"$ref": "#/definitions/Selector"},
+        {"$ref": "#/definitions/Style"}
+      ]
+    },
+    "Selector": {
+        "type": ["string", "array"]
+    },
+    "Style": {
+      "title": "Style Properties",
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {"$ref": "#/definitions/PropertyOrValue"},
+          {"$ref": "#/definitions/Value"}
+        ]
+      }
+    },
+    "Value": {
+      "title": "CSS Value",
+      "type": ["string", "number", "array", "null"]
+    },
+    "PropertyOrValue": {
+      "type": "object",
+      "additionalItems": {
+        "oneOf": [
+          {"$ref": "#/definitions/PropertyOrValue"},
+          {"$ref": "#/definitions/Value"}
+        ]
+      }
+    }
+  }
+}
