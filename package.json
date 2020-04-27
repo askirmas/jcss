@@ -1,0 +1,26 @@
+{
+  "name": "jcss",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "git config include.path ../.gitconfig && git-hooks-wrapper init",
+    "test": "jest --config jest.config.json --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/askirmas/jcss.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/askirmas/jcss/issues"
+  },
+  "homepage": "https://github.com/askirmas/jcss#readme",
+  "devDependencies": {
+    "git-hooks-wrapper": "^0.7.0",
+    "jest": "^25.4.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  }
+}
