@@ -28,7 +28,7 @@ function body2map(body: Body) {
     if (value === null || typeof value !== 'object')
       $return.set(
         isArray(prop) ? prop.join(propDelimiter) : prop,
-        value as Exclude<typeof value, Body>
+        value
       )
     else {
       const keys: (string|[string[], typeof value[string]])[] = Object.keys(value)
