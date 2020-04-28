@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "git config include.path ../.gitconfig && git-hooks-wrapper init",
-    "test": "jest --config jest.config.json --passWithNoTests"
+    "test": "jest --config jest.config.json"
   },
   "repository": {
     "type": "git",
