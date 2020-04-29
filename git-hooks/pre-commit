@@ -1,3 +1,5 @@
 #!/bin/bash
-npm run test
-exit $?
+if [ $(npm run --silent ghw -- getbranch) == "master" ]; then
+  npm run test
+  exit $?
+fi

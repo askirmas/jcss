@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "ghw": "git-hooks-wrapper",
     "prestart": "git config include.path ../.gitconfig && git-hooks-wrapper init",
     "test": "jest --config jest.config.json"
   },
