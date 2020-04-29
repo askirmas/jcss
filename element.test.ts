@@ -30,8 +30,8 @@ describe(element2string.name, () => {
           ["data-a", "=", "a"],
           ["data-b"]
         ],
-      }      
-    ] 
+      }
+    ]
   })).toBe(
     'tag[data-a="a"][data-b]#id:not(tag[data-a="a"][data-b]#id.classList).cl1.cl2'
   ))

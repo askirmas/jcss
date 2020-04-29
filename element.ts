@@ -10,13 +10,13 @@ const {isArray} = Array
 function element2string({id, not, tag, classList, attributes}: Element) :string {
   const factors: string[] = [
     tag2str(tag),
-    
+
     !attributes
     ? ''
     : attributes.map(attributeExpression2str).join(''),
-    
+
     id2str(id),
-    
+
     //TODO split per property
     !not
     ? ''

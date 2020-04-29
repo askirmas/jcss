@@ -7,7 +7,7 @@
     "Style Sheet": {
       "title": "JCSS Style Sheet",
       "type": "array",
-      "items": {"$ref": "#/definitions/Rule"}    
+      "items": {"$ref": "#/definitions/Rule"}
     },
     "Rule": {
       "title": "Rule",
