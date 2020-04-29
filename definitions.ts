@@ -1,4 +1,9 @@
 type orArray<T> = T | (T extends any[] ? T[number]: T[])
+type Dict = Record<string, any>
+
+export interface Tree extends Dict {
+  [selector: string]: null|Tree|Body[]
+}
 
 export type Element = Partial<
   iNot&iTag&iId&iClassList&iAttributes
@@ -13,7 +18,7 @@ type iAttributes = {
 }
 export type iAttribute = [string]|[string, AttributeComparator, string]
 type AttributeComparator = "="|"~="|"|="|"^="|"$="|"*="
-export interface Body extends Record<string, any> {
+export interface Body extends Dict {
   [property: string]: Value|Body
 }
 
