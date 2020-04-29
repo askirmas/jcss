@@ -1,21 +1,18 @@
 import {selectorParser} from "./selector-parser"
 
 describe(selectorParser.name, () => {
-  describe("falls => [{}]", () => {
+  describe("falls => []", () => {
     it('""', () => expect(selectorParser(
       ''
-    )).toStrictEqual([[
-    ]]))
+    )).toStrictEqual([]))
 
     it('1', () => expect(selectorParser(
       '1'
-    )).toStrictEqual([[
-    ]]))
+    )).toStrictEqual([]))
 
     it('##', () => expect(selectorParser(
       '##'
-    )).toStrictEqual([[
-    ]]))  
+    )).toStrictEqual([]))  
   })
 
   describe('1 token', () => {
@@ -115,11 +112,11 @@ describe(selectorParser.name, () => {
     ]]))
   })
 
-  it.skip('el, el2', () => expect(selectorParser(
+  it('el, el2', () => expect(selectorParser(
     "el1, el2"
   )).toStrictEqual([
-    [{tag: "el1"}],
-    [{tag: "el2"}],
+    [{tag: ["el1"]}],
+    [{tag: ["el2"]}],
   ]))
 
   describe("false positive", () => {
