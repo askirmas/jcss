@@ -1,11 +1,10 @@
 import { Element } from "./definitions";
 import { attributeExpression2str } from "./attributes";
+import { $isArray } from "./utils";
 
 export {
   element2string
 }
-
-const {isArray} = Array
 
 function element2string({id, not, tag, classList, attributes}: Element) :string {
   const factors: string[] = [
@@ -21,7 +20,7 @@ function element2string({id, not, tag, classList, attributes}: Element) :string 
     !not
     ? ''
     : `:not(${
-      isArray(not)
+      $isArray(not)
       ? (
         // This expression is not callable. Each member of the union type has signatures, but none of those signatures are compatible with each other
         not as typeof not[number][]
@@ -52,7 +51,7 @@ function classList2str(classList: Element['classList']) {
     typeof classList === 'string'
     ? classList
     : (
-      isArray(classList)
+      $isArray(classList)
       ? classList
       : [...classList]
     ).join('.')

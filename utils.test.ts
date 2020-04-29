@@ -1,4 +1,5 @@
-import {cartesianProductN, cartesianProduct2} from "./utils"
+import {cartesianProductN, cartesianProduct2, $set} from "./utils"
+import { Dict, Assoc } from "./util-defs"
 
 describe(cartesianProductN.name, () => {
   it("empty", () => expect(cartesianProductN(
@@ -107,4 +108,40 @@ describe(cartesianProduct2.name, () => {
     ["3", "4", "1", "2"],
     ["3", "4", "3", "4"]
   ]))
+})
+
+describe($set.name, () => {
+  it('obj', () => expect($set(
+    {"a": 1} as Dict, "b", 2
+  )).toStrictEqual(
+    {"a": 1, "b": 2}
+  ))
+  it('map', () => expect($set(
+    new Map([["a", 1]]), "b", 2
+  )).toStrictEqual(
+    new Map([["a", 1], ["b", 2]])
+  ))
+
+  it('obj reflect', () => {
+    const obj = {a: 1} as Dict
+    expect($set(
+      obj, "b", 2
+    )).toStrictEqual(
+      obj
+    )
+  })
+  it('map reflect', () => {
+    const map = new Map([["a", 1]])
+    expect($set(
+      map, "b", 2
+    )).toStrictEqual(
+      map
+    )
+  })
+
+  it('ts', () => expect($set(
+    {"a": 1} as Assoc<string,number>, "b", 2
+  )).toStrictEqual(
+    {"a": 1, "b": 2}
+  ))
 })
