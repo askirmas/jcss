@@ -1,6 +1,7 @@
 import { orArray, ScalarValue } from "./util-defs"
 
-// export type CSSRepresentation = Array<string|string[]|SimpleBody>
+//TODO Replace `SimpleBody` with `Body`
+export type CSSRepresentation = Array<string|string[]|SimpleBody>
 
 export type Element = Partial<
   iNot&iTag&iId&iClassList&iAttributes
@@ -21,9 +22,9 @@ export interface Body extends Record<string, any> {
   [property: string]: Value|Body
 }
 
-// type SimpleBody = {
-//   [property: string]: Value
-// }
+type SimpleBody = {
+  [property: string]: Value
+}
 
 //`orArray` doesn't work
-export type Value = ScalarValue|ScalarValue[]
+export type Value = ScalarValue|Exclude<ScalarValue, null>[]
