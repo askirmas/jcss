@@ -53,7 +53,7 @@ it('target object was changed', () => {
     {
       "height": [800, "px"]
     },
-    target 
+    target
   )).toStrictEqual(
     target
   )
@@ -67,7 +67,7 @@ it('target map was changed', () => {
     {
       "height": [800, "px"]
     },
-    target 
+    target
   )).toStrictEqual(
     target
   )

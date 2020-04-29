@@ -36,6 +36,25 @@ describe(representation2map.name, () => {
       [".class", new Set(["font-size:16px"])],
       ["#id1", new Set(["font-size:16px"])],
       ["#id2", new Set(["font-size:16px"])]
-    ])
+    ]),
+    "original": [
+      [
+        [], [
+          "will be used:for setup",
+          "top-body:ignored"
+        ]
+      ], [
+        ["el1", "el2","el3"], [
+          "background-color:white",
+          "color:black"
+        ]
+      ], [
+        ["#id1","#id2", ".class"], [
+          "font-size:16px"
+        ]
+      ], [
+        ["tail selector"], []
+      ]
+    ]
   }))
 })

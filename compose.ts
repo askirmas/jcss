@@ -10,6 +10,7 @@ export {
 function representation2map(source: CSSRepresentation) {
   const selectors2atoms: Map<string, Set<string>> = new Map()
   , atoms2selectors: Map<string, Set<string>> = new Map()
+  , original: [string[], string[]][] = []
 
   let selectors: string[] = []
   , afterAtom = false
@@ -32,15 +33,19 @@ function representation2map(source: CSSRepresentation) {
         selectors = entry.slice()
       }
     } else {
+      if (!afterAtom)
+        original.push([selectors, []])
+
       afterAtom = true
       const props = Object.keys(entry)
-      
+      , originalAtoms = original[original.length - 1][1]
+
       for (let i = props.length; i--;) {
         const prop = props[i]
         , value = entry[prop]
         if (value === null)
           continue
-        
+
         const atom = `${
           prop
         }${
@@ -49,6 +54,7 @@ function representation2map(source: CSSRepresentation) {
           //TODO `Value` compiler
           $isArray(value) ? value.join('') : value
         }`
+        originalAtoms.push(atom)
 
         for (let i = selectors.length; i--;) {
           const selector = selectors[i];
@@ -69,8 +75,13 @@ function representation2map(source: CSSRepresentation) {
     }
   }
 
+  if (!afterAtom && selectors.length)
+    //TODO set in `selectors2atoms` pair `selectors`, `null|[]`
+    original.push([selectors, []])
+
   return {
     selectors2atoms,
-    atoms2selectors
+    atoms2selectors,
+    original
   }
 }
