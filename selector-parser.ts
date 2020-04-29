@@ -40,12 +40,23 @@ const combinatorGrammar = {
     "prefix": "#",
     word
   },
-  //TODO attribute
   //TODO attribute expression
-  //TODO pseudo class
-  //TODO pseudo class with parameter
+  "attribute": {
+    "prefix": "\\[",
+    word,
+    "postfix": "\\]"
+  },
+  "pseudoElement": {
+    "prefix": "::",
+    word
+  },
   //TODO `:not()`
-  //TODO pseudo element
+  //TODO pseudo class with `\d+` parameter
+  //TODO `:lang(\w+)` ?
+  "pseudoClass": {
+    "prefix": ":",
+    word
+  }
 } as const
 
 type ElementEntities = keyof typeof elementGrammar
