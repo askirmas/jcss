@@ -1,0 +1,53 @@
+{
+  "empties": [
+    ["+", "", ""],
+    ["+", "", []]
+  ],
+  "metric value": [
+    ["+", "0", 0],
+    ["+", "1px", "1px" ],
+    ["+", "1px", ["1px" ]],
+    ["+", "1px", [1, "px" ]],
+    ["+", "1 px", ["1", "px"]]
+  ], 
+  "sequence": [
+    ["+" , "1px solid black", ["1px", "solid", "black"]]
+  ],
+  "value mix#1": [
+    ["+", "1p x",    ["1p", "x"]],
+    ["+", "1 px 1",   ["1", "px", 1]],
+    ["+", "1 1px", [1, 1, "px"]],
+    ["+", "11 px",   [1, "1", "px"]],
+    ["+", " 1px ",  ["", 1, "px", ""]]
+  ],
+  "value mix#2": [ 
+    ["+", "solid 1px black", ["solid", 1, "px", "black"]]
+  ],
+  
+  "function as array": [
+    [null, "calc(2 + 2)", ["calc", "2 + 2"]],
+    [null, "calc(2 + 2)", ["calc", 2, "+", 2]],
+    [null, "calc(2 + 2)", ["calc", "2 +", 2]],
+    [null, "calc(2+2)", ["calc", "2+2"]]
+  ],
+  "function as object": [
+    [null, "calc(2 + 2)", [{"calc": [2, "+", 2]}]]
+  ],
+  "calc brackets": [
+    [null, "calc((2 + 2) * (2 + 2))", ["calc", [2, "+", 2], "*", [2, "+", 2]]]
+  ],
+  "calc omit": [
+    [null, "calc((2 + 2) * (2 + 2))", ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]]]
+  ],
+
+  "variable": [
+    [null, "var(--var)", ["$var"]],
+    [null, "var(--var)", ["${var}"]],
+    "// Add Scss snippet from https://sass-lang.com/documentation/modules/meta#variable-exists",
+    [null, "var(--var, 0px)", ["${var, 0px}"]],
+    [null, "var(--var, 0px)", ["${var:=0px}"], "// bash-like"],
+    [null, "var(--var, 0px)", ["$var", "0px"], "// in case of only 2 items"],
+    [null, "var(--var, 0px)", ["$var", ":=", "0px"]],
+    [null, "var(--var, 0px)", [{"$var": "0px"}]]
+  ]
+}
