@@ -1,0 +1,18 @@
+{
+  "title": "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#Relative_length_units",
+  "enum": [
+    "em", "ex", "ch", "rem", "lh", "vw", "vh", "vmin", "vmax", "%"
+  ],
+  "definitions": {
+    "em": {},
+    "ex": {},
+    "ch": {},
+    "rem": {},
+    "lh": {},
+    "vw": {},
+    "vh": {},
+    "vmin": {},
+    "vmax": {},
+    "%": {}    
+  }
+}

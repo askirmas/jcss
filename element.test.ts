@@ -22,6 +22,7 @@ describe(element2string.name, () => {
     "attributes": [["data-a", "=", "a"], ["data-b"]],
     "not": [
       {
+        //@ts-ignore
         "id": "id",
         "classList": "classList",
         "tag": "tag",

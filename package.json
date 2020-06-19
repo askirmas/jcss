@@ -6,7 +6,11 @@
   "scripts": {
     "ghw": "git-hooks-wrapper",
     "prestart": "git config include.path ../.gitconfig && git-hooks-wrapper init",
-    "test": "jest --config jest.config.json"
+
+    "pretest": "jest --clearCache",
+    "test--dry": "jest",
+    "test:dev": "npm run test--dry -- --watch --onlyFailures --runInBand",
+    "test": "npm run test--dry"
   },
   "repository": {
     "type": "git",
@@ -22,7 +26,7 @@
     "git-hooks-wrapper": "^0.7.0",
     "jest": "^25.4.0",
     "ts-jest": "^25.4.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "@types/globby": "^9.1.0",

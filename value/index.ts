@@ -1,26 +1,43 @@
 import { CssValue, StringLike } from "./defs";
+import { $typeof } from "../typeof";
+import { isUnit } from "../schemas/length-unit"
+
+const {keys: $keys} = Object
+type Dict<T = any> = Exclude<{[prop: string]: T}, any[]>
 
 export {
   value2string,
   spacer
 }
 
-function value2string(source: CssValue) :string {
-  switch (typeof source) {
+// TODO Without recursion
+function value2string(source: CssValue) :string|number|null {
+  const type = $typeof(source)
+  switch (type) {
     case "string":
-      return source
+      return source as string
     case "number":
-      return `${source}`
+      return source as number
+    case "array":
+      const flatted = (source as Extract<CssValue, any[]>)
+      .flat()
+      .map(v => value2string(v)) as StringLike[]
+      //.filter(s => s !== "")
+    
+      for (let i = flatted.length; i--;)
+        spacer(flatted[i], i, flatted)
+    
+      return flatted
+      .join('')
+    case "object":
+      const fnName = $keys(source)[0] as keyof Extract<CssValue, Dict>
+      return `${fnName}(${value2string(
+        //@ts-ignore
+        source[fnName]
+      )})`
+    default:
+      return null
   }
-  
-  const flatted = source.flat() as StringLike[]
-  //.filter(s => s !== "")
-
-  for (let i = flatted.length; i--;)
-    spacer(flatted[i], i, flatted)
-
-  return flatted
-  .join('')
 }
 
 function spacer(token: StringLike, i: number, source: StringLike[]) {
@@ -31,6 +48,7 @@ function spacer(token: StringLike, i: number, source: StringLike[]) {
   if (
     typeof prev === "number"
     && typeof token === "string"
+    && isUnit(token)
   )
     return
 
