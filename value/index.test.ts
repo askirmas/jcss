@@ -1,6 +1,6 @@
 import {value2string} from "."
-import testData from "./index.test.json"
-import { DocTest } from "../test.def"
+import testData from "./index.doctest.json"
+import { DocTest } from "../doctest/def"
 
 const {stringify: $stringify} = JSON
 

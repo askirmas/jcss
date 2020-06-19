@@ -1,4 +1,4 @@
-import schema from "./test.schema.json"
+import schema from "./schema.json"
 
 export type eStatus = keyof typeof schema["definitions"]["Status"]["definitions"]
 

@@ -14,9 +14,9 @@
     },
     {
       "fileMatch": [
-        "*.test.*json"
+        "*.doctest.*json"
       ],
-      "url": "./test.schema.json"
+      "url": "./doctest/schema.json"
     },
     {
       "fileMatch": [
