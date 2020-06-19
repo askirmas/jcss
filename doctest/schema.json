@@ -26,19 +26,31 @@
   "definitions": {
     "Suite": {
       "type": "array",
-      "minItems": 3,
-      "maxItems": 4,
+      "minItems": 4,
+      "maxItems": 6,
       "items": [
         {
           "title": "Status",
           "$ref": "#/definitions/Status"
         },
         {
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "title": "Current Input/Arguments",
+          "$ref": "./arguments.schema.json"
+        },
+        {
           "title": "Output/Return",
           "$ref": "./return.schema.json"
         },
         {
-          "title": "Input/Arguments",
+          "title": "Output/Return",
+          "$ref": "./return.schema.json"
+        },
+        {
+          "title": "New Input/Arguments",
           "$ref": "./arguments.schema.json"
         }
       ],
@@ -49,20 +61,62 @@
     },
     "Status": {
       "definitions": {
-        "DONE": {},
-        "DEPR": {},
-        "BUG": {},
-        "TBD": {},
-        "NOTE": {},
-        "OPT": {}
+        "DONE": {
+          "title": "Implemented and Supported",
+          "description":  "`X => Y, X ?!> Z` MUST `X => Y, X ?!> Z`, no changes, 2-3"
+        },
+        "LEG": {
+          "title": "Legacy",
+          "description":  "`X => Y` SHOULD `X => Y`, no changes, 2 "
+        },
+        "DEPR": {
+          "title": "Deprecated",
+          "description":  "`X => Y` SHOULD NOT `X !> Y, N ?> Y, X ?> Z`, I/O, 2-4 "
+        },
+        "WONT": {
+          "title": "Will Not Be",
+          "description":  "`X !> Y` MUST NOT `X !> Y`, no changes, 2 "
+        },
+        "TBD": {
+          "title": "To Be Done",
+          "description":  "`X !> Y, X ?> Z` SHOULD `X => Y`, O, 2-3 "
+        },
+        "BUG+": {
+          "title": "Bug",
+          "description":  "`X !> Y`, `X => Z` MUST `X => Y`,O, 3 "
+        },
+        "BUG-": {
+          "title": "Bug",
+          "description":  "`X => Y, X ?> Z` MUST `X !> Y, X ?> Z`, O, 2-3 "
+        },
+        "UNST": {
+          "title": "Unstable",
+          "description":  "`X => Y` MAY `X !> Y`, O, 2 "
+        },
+        "OPT": {
+          "title": "Optional",
+          "description":  "`X !> Y`<br/> `X ?> Z` MAY `X => Y`, O, 2-3 "
+        },
+        "PROP": {
+          "title": "Proposal",
+          "description":  "`X => Y, N => Z` MAY `X => Z, N => Y`, IO, 4 "
+        },
+        "BRK": {
+          "title": "Breaking"
+        }
       },
       "enum": [
         "DONE",
+        "LEG",
         "DEPR",
-        "BUG",
+        "WONT",
         "TBD",
-        "NOTE",
-        "OPT"
+        "BUG+",
+        "BUG-",
+        "UNST",
+        "OPT",
+        "PROP",
+        "BRK"
       ]
     }
   }
