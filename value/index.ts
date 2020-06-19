@@ -11,7 +11,7 @@ export {
 }
 
 // TODO Without recursion
-function value2string(source: CssValue) :string|number|null {
+function value2string(source: CssValue) :StringLike {
   const type = $typeof(source)
   switch (type) {
     case "string":
@@ -22,7 +22,6 @@ function value2string(source: CssValue) :string|number|null {
       const flatted = (source as Extract<CssValue, any[]>)
       .flat()
       .map(v => value2string(v)) as StringLike[]
-      //.filter(s => s !== "")
     
       for (let i = flatted.length; i--;)
         spacer(flatted[i], i, flatted)
@@ -30,7 +29,8 @@ function value2string(source: CssValue) :string|number|null {
       return flatted
       .join('')
     case "object":
-      const fnName = $keys(source)[0] as undefined | keyof Extract<CssValue, Dict> & string
+      // Type 'null' is not assignable to type 'object'
+      const fnName = $keys(source!)[0] as undefined | keyof Extract<CssValue, Dict> & string
       if (typeof fnName === "string")
         return `${fnName}(${value2string(
           //@ts-ignore

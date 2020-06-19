@@ -1,6 +1,12 @@
 {
   "title": "Documented function test",
   "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "default": "./schema.json"
+    }
+  },
   "additionalProperties": {
     "title": "Topic",
     "type": "array",
@@ -12,30 +18,35 @@
         },
         {
           "title": "Suite",
-          "type": "array",
-          "minItems": 3,
-          "maxItems": 4,
-          "items": [
-            {
-              "title": "Status",
-              "$ref": "#/definitions/Status"
-            },
-            {
-              "title": "Output/Return"
-            },
-            {
-              "title": "Input/Arguments"
-            }
-          ],
-          "additionalItems": {
-            "title": "Comment",
-            "type": "string"
-          }
+          "$ref": "#/definitions/Suite"
         }
       ]
     }
   },
   "definitions": {
+    "Suite": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 4,
+      "items": [
+        {
+          "title": "Status",
+          "$ref": "#/definitions/Status"
+        },
+        {
+          "title": "Output/Return",
+          "$ref": "./return.schema.json"
+        },
+        {
+          "title": "Input/Arguments",
+          "$ref": "./arguments.schema.json"
+        }
+      ],
+      "additionalItems": {
+        "title": "Comment",
+        "type": "string"
+      }      
+    },
     "Status": {
       "definitions": {
         "DONE": {},

@@ -1,4 +1,4 @@
-export type StringLike = string|number
+export type StringLike = string|number|null
 type orArray0<T> = T | T[]
 type orArray1<T> = orArray0<orArray0<T>>
 type orArray2<T> = orArray1<orArray1<T>>

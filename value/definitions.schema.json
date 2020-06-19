@@ -1,0 +1,38 @@
+{
+  "definitions": {
+    "StringLike": {
+      "title": "StringLike",
+      "type": ["string", "number", "null"]
+    },
+    "CssSimpleValue": {
+      "title": "CssSimpleValue",
+      "anyOf": [
+        {"$ref": "#/definitions/StringLike"},
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CssSimpleValue"
+          }
+        }
+      ]
+    },
+    "CssFunction": {
+      "title": "CssFunction",
+      "type": "object",
+      "maxProperties": 1,
+      "additionalProperties": {
+        "oneOf": [
+          {"$ref": "#/definitions/CssSimpleValue"},
+          {"$ref": "#/definitions/CssFunction"}
+        ]
+      }
+    },
+    "CssValue": {
+      "title": "CssValue",
+      "oneOf": [
+        {"$ref": "#/definitions/CssSimpleValue"},
+        {"$ref": "#/definitions/CssFunction"}
+      ]
+    }  
+  }
+}
