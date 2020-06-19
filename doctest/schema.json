@@ -18,7 +18,18 @@
         },
         {
           "title": "Suite",
-          "$ref": "#/definitions/Suite"
+          "type": "array",
+          "items": [
+            {
+              "title": "Status",
+              "$ref": "#/definitions/Status"
+            },
+            {
+              "title": "Description",
+              "type": "string"
+            },
+            {"$ref": "#/definitions/Suite"}
+          ]
         }
       ]
     }
@@ -26,17 +37,9 @@
   "definitions": {
     "Suite": {
       "type": "array",
-      "minItems": 4,
-      "maxItems": 6,
+      "minItems": 2,
+      "maxItems": 4,
       "items": [
-        {
-          "title": "Status",
-          "$ref": "#/definitions/Status"
-        },
-        {
-          "title": "Description",
-          "type": "string"
-        },
         {
           "title": "Current Input/Arguments",
           "$ref": "./arguments.schema.json"

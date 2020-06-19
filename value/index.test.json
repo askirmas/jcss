@@ -1,69 +1,160 @@
 {
   "$schema": "./schema.json",
   "empties": [
-    ["DONE", "", "", ""],
-    ["DONE", "null", null, null],
-    ["DONE", "[]", [], ""],
-    ["DONE", "{}", {}, null]
+    ["DONE", "", [
+      "", ""
+    ]],
+    ["DONE", "null", [
+      null, null
+    ]],
+    ["DONE", "[]", [
+      [], ""
+    ]],
+    ["DONE", "{}", [
+      {}, null
+    ]]
   ],
   "metric value": [
-    ["DONE", "number", 0, 0],
-    ["DONE", "string", "1px", "1px"],
-    ["DONE", "[string]", ["1px"], "1px"],
-    ["DONE", "string|number[]", [1, "px" ], "1px"],
-    ["DEPR", "string|number[][]", [[1], ["px"]], "1px", ""],
-    ["DONE", "string[]", ["1", "px"], "1 px"]
+    ["DONE", "number", [
+      0, 0
+    ]],
+    ["DONE", "string", [
+      "1px", "1px"
+    ]],
+    ["DONE", "[string]", [
+      ["1px"], "1px"
+    ]],
+    ["DONE", "string|number[]", [
+      [1, "px" ], "1px"
+    ]],
+    ["DEPR", "string|number[][]", [
+      [[1], ["px"]],
+      "1px",
+      ""
+    ]],
+    ["DONE", "string[]", [
+      ["1", "px"], "1 px"
+    ]]
   ], 
   "expression": [
-    ["DONE", "ordinary", [2, "+", 2], "2 + 2"],
-    ["DONE", "1", ["2+", 2], "2+ 2"],
-    ["DONE", "2", [2, "+2"], "2 +2"],
-    ["OPT", "prettify", "2+2", "2 + 2"]
+    ["DONE", "ordinary", [
+      [2, "+", 2], "2 + 2"
+    ]],
+    ["DONE", "1", [
+      ["2+", 2], "2+ 2"
+    ]],
+    ["DONE", "2", [
+      [2, "+2"], "2 +2"
+    ]],
+    ["OPT", "prettify", [
+      "2+2", "2 + 2"
+    ]]
   ],
   "sequence": [
-    ["DONE", "string[]", ["1px", "solid", "black"], "1px solid black"],
-    ["DONE", "number[]", [1, 2, 3], "1 2 3"]
+    ["DONE", "string[]", [
+      ["1px", "solid", "black"],
+      "1px solid black"
+    ]],
+    ["DONE", "number[]", [
+      [1, 2, 3], "1 2 3"
+    ]]
   ],
   "value mix#1 - sticking": [
-    ["DONE", "1", ["1p", "x"], "1p x"],
-    ["DONE", "2", ["1", "px", 1], "1 px 1"],
-    ["DONE", "3", [1, 1, "px"], "1 1px"],
-    ["DONE", "4", [1, "px", 1], "1px 1"],
-    ["DONE", "5", [1, "1", "px"], "1 1 px"],
-    ["WONT", "6", ["", 1, "px", ""], "1px", " 1px "]
+    ["DONE", "1", [
+      ["1p", "x"], "1p x"
+    ]],
+    ["DONE", "2", [
+      ["1", "px", 1], "1 px 1"
+    ]],
+    ["DONE", "3", [
+      [1, 1, "px"], "1 1px"
+    ]],
+    ["DONE", "4", [
+      [1, "px", 1], "1px 1"
+    ]],
+    ["DONE", "5", [
+      [1, "1", "px"], "1 1 px"
+    ]],
+    ["WONT", "6", [
+      ["", 1, "px", ""], "1px", " 1px "
+    ]]
   ],
   "value mix#2": [ 
-    ["DONE", "border", ["solid", 1, "px", "black"], "solid 1px black"]
+    ["DONE", "border", [
+      ["solid", 1, "px", "black"], "solid 1px black"
+    ]]
   ],
   "function as array": [
-    ["PROP", "", ["calc", 2, "+", 2], "calc(2 + 2)"],
-    ["PROP", "calc brackets", ["calc", [2, "+", 2], "*", [2, "+", 2]], "calc((2 + 2) * (2 + 2))"]    
+    ["PROP", "", [
+      ["calc", 2, "+", 2], "calc(2 + 2)"
+    ]],
+    ["PROP", "calc brackets", [
+      ["calc", [2, "+", 2], "*", [2, "+", 2]], "calc((2 + 2) * (2 + 2))"
+    ]]    
   ],
   "function as object": [
-    ["DONE", "", {"calc": [2, "+", 2]}, "calc(2 + 2)"],
-    ["TBD", "", {"rgb": [0, 0, 0]}, "rgb(0, 0, 0)"],
-    ["TBD", "", [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}], "polygon(50% 0%, 0% 100%, 100% 100%)"],
-    ["TBD", "", [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}], "polygon(50% 0%, 0% 100%, 100% 100%)"]
+    ["DONE", "", [
+      {"calc": [2, "+", 2]}, "calc(2 + 2)"
+    ]],
+    ["TBD", "", [
+      {"rgb": [0, 0, 0]}, "rgb(0, 0, 0)"
+    ]],
+    ["TBD", "", [
+      [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}],
+      "polygon(50% 0%, 0% 100%, 100% 100%)"
+    ]],
+    ["TBD", "", [
+      [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}],
+      "polygon(50% 0%, 0% 100%, 100% 100%)"
+    ]]
   ],
   "calc omit": [
-    ["PROP", "", ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]], "calc((2 + 2) * (2 + 2))"],
-    ["TBD", "", [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}], "calc((2 + 2) * (2 + 2))"]
+    ["PROP", "", [
+      ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]],
+      "calc((2 + 2) * (2 + 2))"
+    ]],
+    ["TBD", "", [
+      [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
+      "calc((2 + 2) * (2 + 2))"
+    ]]
   ],
   "nesting functions": [
-    ["DONE", "", [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}], "calc(calc(2 + 2) * calc(2 + 2))"]
+    ["DONE", "", [
+      [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
+      "calc(calc(2 + 2) * calc(2 + 2))"
+    ]]
   ],
   "variable": [
-    ["DONE", "", "$var", "var(--var)"],
-    ["OPT", "", "${var}", "var(--var)"]
+    ["DONE", "", [
+      "$var", "var(--var)"
+    ]],
+    ["OPT", "", [
+      "${var}", "var(--var)"
+    ]]
   ],
   "variable with default": [
-    ["DONE", "", [{"$var": "0px"}], "var(--var, 0px)"],
-    ["DONE", "", [{"$var": [0, "px"]}], "var(--var, 0px)"],
-    ["DONE", "", [{"$v1": {"$v2": [0, "px"]}}], "var(--v1, var(--v2, 0px))"],
+    ["DONE", "", [
+      [{"$var": "0px"}], "var(--var, 0px)"
+    ]],
+    ["DONE", "", [
+      [{"$var": [0, "px"]}], "var(--var, 0px)"
+    ]],
+    ["DONE", "", [
+      [{"$v1": {"$v2": [0, "px"]}}],
+      "var(--v1, var(--v2, 0px))"
+    ]],
     "Scss snippet https://sass-lang.com/documentation/modules/meta#variable-exists",
-    ["OPT", "bash-like", "${var:=0px}", "var(--var, 0px)"],
-    ["OPT", "", "${var, 0px}", "var(--var, 0px)"],
-    ["PROP", "in case of only 2 items", ["$var", "0px"], "var(--var, 0px)"],
-    ["PROP", "", ["$var", ":=", "0px"], "var(--var, 0px)"]
+    ["OPT", "bash-like", [
+      "${var:=0px}", "var(--var, 0px)"
+    ]],
+    ["OPT", "", [
+      "${var, 0px}", "var(--var, 0px)"
+    ]],
+    ["PROP", "in case of only 2 items", [
+      ["$var", "0px"], "var(--var, 0px)"
+    ]],
+    ["PROP", "", [
+      ["$var", ":=", "0px"], "var(--var, 0px)"
+    ]]
   ]
 }
