@@ -53,14 +53,16 @@
         "DEPR": {},
         "BUG": {},
         "TBD": {},
-        "NOTE": {}
+        "NOTE": {},
+        "OPT": {}
       },
       "enum": [
         "DONE",
         "DEPR",
         "BUG",
         "TBD",
-        "NOTE"
+        "NOTE",
+        "OPT"
       ]
     }
   }

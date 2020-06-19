@@ -53,14 +53,15 @@
     ["DONE", "calc(calc(2 + 2) * calc(2 + 2))", [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}]]
   ],
   "variable": [
-    ["TBD" , "var(--var)", "$var"],
+    ["DONE" , "var(--var)", "$var"],
     ["TBD" , "var(--var)", "${var}"],
     "Add Scss snippet from https://sass-lang.com/documentation/modules/meta#variable-exists",
     ["TBD" , "var(--var, 0px)", "${var, 0px}"],
     ["TBD" , "var(--var, 0px)", "${var:=0px}", "// bash-like"],
     ["TBD" , "var(--var, 0px)", ["$var", "0px"], "// in case of only 2 items"],
     ["TBD" , "var(--var, 0px)", ["$var", ":=", "0px"]],
-    ["TBD" , "var(--var, 0px)", [{"$var": "0px"}]],
-    ["TBD" , "var(--var, 0px)", [{"$var": [0, "px"]}]]
+    ["DONE" , "var(--var, 0px)", [{"$var": "0px"}]],
+    ["DONE" , "var(--var, 0px)", [{"$var": [0, "px"]}]],
+    ["DONE" , "var(--v1, var(--v2, 0px))", [{"$v1": {"$v2": [0, "px"]}}]]
   ]
 }
