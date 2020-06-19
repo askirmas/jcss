@@ -30,11 +30,12 @@ function value2string(source: CssValue) :string|number|null {
       return flatted
       .join('')
     case "object":
-      const fnName = $keys(source)[0] as keyof Extract<CssValue, Dict>
-      return `${fnName}(${value2string(
-        //@ts-ignore
-        source[fnName]
-      )})`
+      const fnName = $keys(source)[0] as undefined | keyof Extract<CssValue, Dict> & string
+      if (typeof fnName === "string")
+        return `${fnName}(${value2string(
+          //@ts-ignore
+          source[fnName]
+        )})`
     default:
       return null
   }

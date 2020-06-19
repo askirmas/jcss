@@ -1,0 +1,56 @@
+{
+  "title": "Documented function test",
+  "type": "object",
+  "additionalProperties": {
+    "title": "Topic",
+    "type": "array",
+    "items": {
+      "oneOf": [
+        {
+          "title": "TODO",
+          "type": "string"
+        },
+        {
+          "title": "Suite",
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 4,
+          "items": [
+            {
+              "title": "Status",
+              "$ref": "#/definitions/Status"
+            },
+            {
+              "title": "Output/Return"
+            },
+            {
+              "title": "Input/Arguments"
+            }
+          ],
+          "additionalItems": {
+            "title": "Comment",
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "Status": {
+      "definitions": {
+        "DONE": {},
+        "DEPR": {},
+        "BUG": {},
+        "TBD": {},
+        "NOTE": {}
+      },
+      "enum": [
+        "DONE",
+        "DEPR",
+        "BUG",
+        "TBD",
+        "NOTE"
+      ]
+    }
+  }
+}

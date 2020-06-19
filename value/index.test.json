@@ -1,59 +1,65 @@
 {
   "empties": [
-    ["+", "", ""],
-    ["+", "", []],
-    ["+", null, null]
+    ["DONE", "", ""],
+    ["DONE", null, null],
+    ["DONE", "", []],
+    ["DONE", null, {}]
   ],
   "metric value": [
-    ["+", 0, 0],
-    ["+", "1px", "1px" ],
-    ["+", "1px", ["1px" ]],
-    ["+", "1px", [1, "px" ]],
-    ["+", "1 px", ["1", "px"]]
+    ["DONE", 0, 0],
+    ["DONE", "1px", "1px"],
+    ["DONE", "1px", ["1px"]],
+    ["DONE", "1px", [1, "px" ]],
+    ["DEPR", "1px", [[1], ["px"]]],
+    ["DONE", "1 px", ["1", "px"]]
   ], 
   "expression": [
-    ["+", "2 + 2", [2, "+", 2]],
-    ["+", "2+ 2", ["2+", 2]],
-    ["+", "2 +2", [2, "+2"]],
-    [null, "2 + 2", "2+2"]
+    ["DONE", "2 + 2", [2, "+", 2]],
+    ["DONE", "2+ 2", ["2+", 2]],
+    ["DONE", "2 +2", [2, "+2"]],
+    ["TBD" , "2 + 2", "2+2"]
   ],
   "sequence": [
-    ["+" , "1px solid black", ["1px", "solid", "black"]]
+    ["DONE" , "1px solid black", ["1px", "solid", "black"]]
   ],
   "value mix#1": [
-    ["+", "1p x",    ["1p", "x"]],
-    ["+", "1 px 1",   ["1", "px", 1]],
-    ["+", "1 1px", [1, 1, "px"]],
-    ["+", "1 1 px",   [1, "1", "px"]],
-    ["+", " 1px ",  ["", 1, "px", ""]]
+    ["DONE", "1p x", ["1p", "x"]],
+    ["DONE", "1 px 1", ["1", "px", 1]],
+    ["DONE", "1 1px", [1, 1, "px"]],
+    ["DONE", "1 1 px", [1, "1", "px"]],
+    ["DONE", " 1px ", ["", 1, "px", ""]]
   ],
   "value mix#2": [ 
-    ["+", "solid 1px black", ["solid", 1, "px", "black"]]
+    ["DONE", "solid 1px black", ["solid", 1, "px", "black"]]
   ],
   "function as array": [
-    [null, "calc(2 + 2)", ["calc", 2, "+", 2]]
+    ["TBD" , "calc(2 + 2)", ["calc", 2, "+", 2]]
   ],
   "function as object": [
-    ["+", "calc(2 + 2)", [{"calc": [2, "+", 2]}]],
-    [null, "rgb(0, 0, 0)", [{"rgb": [0, 0, 0]}]],
-    [null, "polygon(50% 0%, 0% 100%, 100% 100%)", [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}]],
-    [null, "polygon(50% 0%, 0% 100%, 100% 100%)", [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}]]
+    ["DONE", "calc(2 + 2)", {"calc": [2, "+", 2]}],
+    ["TBD" , "rgb(0, 0, 0)", {"rgb": [0, 0, 0]}],
+    ["TBD" , "polygon(50% 0%, 0% 100%, 100% 100%)", [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}]],
+    ["TBD" , "polygon(50% 0%, 0% 100%, 100% 100%)", [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}]]
   ],
   "calc brackets": [
-    [null, "calc((2 + 2) * (2 + 2))", ["calc", [2, "+", 2], "*", [2, "+", 2]]]
+    ["TBD" , "calc((2 + 2) * (2 + 2))", ["calc", [2, "+", 2], "*", [2, "+", 2]]]
   ],
   "calc omit": [
-    [null, "calc((2 + 2) * (2 + 2))", ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]]],
-    [null, "calc((2 + 2) * (2 + 2))", [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}]]
+    ["TBD" , "calc((2 + 2) * (2 + 2))", ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]]],
+    ["TBD" , "calc((2 + 2) * (2 + 2))", [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}]]
+  ],
+  "nesting functions": [
+    ["DONE", "calc(calc(2 + 2) * calc(2 + 2))", [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}]]
   ],
   "variable": [
-    [null, "var(--var)", ["$var"]],
-    [null, "var(--var)", ["${var}"]],
-    "// Add Scss snippet from https://sass-lang.com/documentation/modules/meta#variable-exists",
-    [null, "var(--var, 0px)", ["${var, 0px}"]],
-    [null, "var(--var, 0px)", ["${var:=0px}"], "// bash-like"],
-    [null, "var(--var, 0px)", ["$var", "0px"], "// in case of only 2 items"],
-    [null, "var(--var, 0px)", ["$var", ":=", "0px"]],
-    [null, "var(--var, 0px)", [{"$var": "0px"}]]
+    ["TBD" , "var(--var)", "$var"],
+    ["TBD" , "var(--var)", "${var}"],
+    "Add Scss snippet from https://sass-lang.com/documentation/modules/meta#variable-exists",
+    ["TBD" , "var(--var, 0px)", "${var, 0px}"],
+    ["TBD" , "var(--var, 0px)", "${var:=0px}", "// bash-like"],
+    ["TBD" , "var(--var, 0px)", ["$var", "0px"], "// in case of only 2 items"],
+    ["TBD" , "var(--var, 0px)", ["$var", ":=", "0px"]],
+    ["TBD" , "var(--var, 0px)", [{"$var": "0px"}]],
+    ["TBD" , "var(--var, 0px)", [{"$var": [0, "px"]}]]
   ]
 }
