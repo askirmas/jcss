@@ -13,15 +13,13 @@ import {
 import { $typeof } from "../typeof";
 import { isUnit } from "../schemas/length-unit"
 import { isCommaSeparated } from "../schemas/function";
-
-type Dict<T = any> = Exclude<{[prop: string]: T}, any[]>
+import { Dict } from "../util-defs";
 
 const {keys: $keys} = Object
 , varPrefixLength = varPrefix.length
 
 export {
-  value2string,
-  spacer
+  value2string
 }
 
 // TODO Without recursion
