@@ -10,8 +10,7 @@ if (module.parent === null) {
   if (!fileName)
     throw Error('No filename @ argument')
 
-  const {writeFileSync} = require('fs')
-  , cwd = process.cwd()
+  const cwd = process.cwd()
   , data = require(`${cwd}/${fileName}`)
 
   $log(json2md(data).join("\n\n"))
