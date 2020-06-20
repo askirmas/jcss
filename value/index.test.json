@@ -93,35 +93,42 @@
     ]]    
   ],
   "function as object": [
-    ["DONE", "", [
+    ["DONE", "Space separator", [
       {"calc": [2, "+", 2]}, "calc(2 + 2)"
     ]],
-    ["TBD", "", [
+    ["TBD", "Comma separator @ number[]", [
       {"rgb": [0, 0, 0]}, "rgb(0, 0, 0)"
     ]],
-    ["TBD", "", [
+    ["TBD", "Comma separator @ string[]", [
       [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}],
-      "polygon(50% 0%, 0% 100%, 100% 100%)"
+      "polygon(50% 0%, 0% 100%, 100% 100%)",
+      "polygon(50% 0% 0% 100% 100% 100%)"
     ]],
-    ["TBD", "", [
+    ["TBD", "Mix separators @ number[]", [
       [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}],
-      "polygon(50% 0%, 0% 100%, 100% 100%)"
+      "polygon(50% 0%, 0% 100%, 100% 100%)",
+      "polygon(50% 0% 0% 100% 100% 100%)"
+    ]],
+    ["TBD", "Mix separators @ mix[]", [
+      [{"polygon": [{"$point": ["50%", "0%"]}, ["0%", "$x"], "100% 100%"]}],
+      "polygon(var(--point, 50% 0%), 0% var(--x), 100% 100%)",
+      "polygon(var(--point, 50% 0%) 0% var(--x) 100% 100%)"
     ]]
   ],
   "calc omit": [
-    ["PROP", "", [
+    ["PROP", "array", [
       ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]],
       "calc((2 + 2) * (2 + 2))"
     ]],
-    ["TBD", "", [
+    ["OPT", "object", [
       [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
       "calc((2 + 2) * (2 + 2))"
     ]]
   ],
   "nesting functions": [
     ["DONE", "", [
-      [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
-      "calc(calc(2 + 2) * calc(2 + 2))"
+      [{"rgb": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
+      "rgb(calc(2 + 2) * calc(2 + 2))"
     ]]
   ],
   "variable": [
@@ -132,7 +139,7 @@
       "${var}", "var(--var)"
     ]]
   ],
-  "variable with default": [
+  "variable with default as object": [
     ["DONE", "", [
       [{"$var": "0px"}], "var(--var, 0px)"
     ]],
@@ -143,18 +150,28 @@
       [{"$v1": {"$v2": [0, "px"]}}],
       "var(--v1, var(--v2, 0px))"
     ]],
-    "Scss snippet https://sass-lang.com/documentation/modules/meta#variable-exists",
+    "Scss snippet https://sass-lang.com/documentation/modules/meta#variable-exists"
+  ],
+  "variable with default as string": [
     ["OPT", "bash-like", [
       "${var:=0px}", "var(--var, 0px)"
     ]],
     ["OPT", "", [
       "${var, 0px}", "var(--var, 0px)"
-    ]],
+    ]]
+  ],
+  "variable with default as array": [
     ["PROP", "in case of only 2 items", [
       ["$var", "0px"], "var(--var, 0px)"
     ]],
     ["PROP", "", [
       ["$var", ":=", "0px"], "var(--var, 0px)"
+    ]]
+  ],
+  "variable and function": [
+    ["UNST", "", [
+      [{"rgb": [{"$color": {"hsl": ["2, 2, 2,", "$opacity"]}}]}],
+      "rgb(var(--color, hsl(2, 2, 2, var(--opacity))))"
     ]]
   ]
 }
