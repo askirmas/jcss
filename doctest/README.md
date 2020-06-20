@@ -16,8 +16,6 @@
 | `QUES` | Question | `? => Y` | *how* | `X => Y` | I | 1 |
 
 
-
-
 ```mermaid
 graph LR
 

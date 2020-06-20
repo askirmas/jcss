@@ -65,62 +65,73 @@
     },
     "Status": {
       "definitions": {
-        "DONE": {
+        "DONE": {},
+        "LEG": {},
+        "DEPR": {},
+        "WONT": {},
+        "TBD": {},
+        "BUG+": {},
+        "BUG-": {},
+        "UNST": {},
+        "OPT": {},
+        "PROP": {},
+        "BRK": {}
+      },
+      "oneOf": [
+        {
+          "const": "DONE",
           "title": "Implemented and Supported",
           "description":  "`X => Y, X ?!> Z` MUST `X => Y, X ?!> Z`, no changes, 2-3"
         },
-        "LEG": {
+        {
+          "const": "LEG",
           "title": "Legacy",
           "description":  "`X => Y` SHOULD `X => Y`, no changes, 2 "
         },
-        "DEPR": {
+        {
+          "const": "DEPR",
           "title": "Deprecated",
           "description":  "`X => Y` SHOULD NOT `X !> Y, N ?> Y, X ?> Z`, I/O, 2-4 "
         },
-        "WONT": {
+        {
+          "const": "WONT",
           "title": "Will Not Be",
           "description":  "`X !> Y` MUST NOT `X !> Y`, no changes, 2 "
         },
-        "TBD": {
+        {
+          "const": "TBD",
           "title": "To Be Done",
           "description":  "`X !> Y, X ?> Z` SHOULD `X => Y`, O, 2-3 "
         },
-        "BUG+": {
+        {
+          "const": "BUG+",
           "title": "Bug",
           "description":  "`X !> Y`, `X => Z` MUST `X => Y`,O, 3 "
         },
-        "BUG-": {
+        {
+          "const": "BUG-",
           "title": "Bug",
           "description":  "`X => Y, X ?> Z` MUST `X !> Y, X ?> Z`, O, 2-3 "
         },
-        "UNST": {
+        {
+          "const": "UNST",
           "title": "Unstable",
           "description":  "`X => Y` MAY `X !> Y`, O, 2 "
         },
-        "OPT": {
+        {
+          "const": "OPT",
           "title": "Optional",
           "description":  "`X !> Y`<br/> `X ?> Z` MAY `X => Y`, O, 2-3 "
         },
-        "PROP": {
+        {
+          "const": "PROP",
           "title": "Proposal",
           "description":  "`X => Y, N => Z` MAY `X => Z, N => Y`, IO, 4 "
         },
-        "BRK": {
+        {
+          "const": "BRK",
           "title": "Breaking"
         }
-      },
-      "enum": [
-        "DONE",
-        "LEG",
-        "DEPR",
-        "WONT",
-        "TBD",
-        "BUG+",
-        "BUG-",
-        "UNST",
-        "OPT",
-        "PROP",
-        "BRK"
       ]
     }
   }
