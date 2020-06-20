@@ -7,6 +7,7 @@ const {keys: $keys} = Object
 type Dict<T = any> = Exclude<{[prop: string]: T}, any[]>
 
 const varPrefix = "$"
+, functionPrefix = "@"
 
 export {
   value2string,
@@ -44,7 +45,8 @@ function value2string(source: Expression, delimiter = '') :Token {
       const value = value2string(
         //@ts-ignore
         source[fnName],
-        isCommaSeparated(fnName)
+        fnName[0] === functionPrefix
+        || isCommaSeparated(fnName)
         ? ','
         : ''
       )
