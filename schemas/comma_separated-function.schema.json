@@ -1,0 +1,16 @@
+{
+  "enum": [
+    "rgb",
+    "rgba",
+    "hsl",
+    "hsla",
+    "polygon"
+  ],
+  "definitions": {
+    "rgb": {},
+    "rgba": {},
+    "hsl": {},
+    "hsla": {},
+    "polygon": {}
+  }
+}

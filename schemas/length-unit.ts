@@ -1,9 +1,7 @@
-import absoluteSchema from "./absolute.length-unit.schema.json"
-import relativeSchema from "./relative.length-unit.schema.json"
-import gridSchema from "./grid.length-unit.schema.json"
-
-type definitions2enum<T extends {definitions: {[def: string]: unknown}}> = keyof T["definitions"]
-type RSet = Readonly<Set<string>>
+import { RSet, definitions2enum } from "./defs"
+import absoluteSchema from "./absolute-length_unit.schema.json"
+import relativeSchema from "./relative-length_unit.schema.json"
+import gridSchema from "./grid-length_unit.schema.json"
 
 type eAbsolute = definitions2enum<typeof absoluteSchema>
 type eRelative = definitions2enum<typeof relativeSchema>

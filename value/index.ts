@@ -1,6 +1,7 @@
-import { Expression, Token } from "./defs";
+import { Expression, Token, ToF } from "./defs";
 import { $typeof } from "../typeof";
 import { isUnit } from "../schemas/length-unit"
+import { isCommaSeparated } from "../schemas/function";
 
 const {keys: $keys} = Object
 type Dict<T = any> = Exclude<{[prop: string]: T}, any[]>
@@ -13,7 +14,7 @@ export {
 }
 
 // TODO Without recursion
-function value2string(source: Expression) :Token {
+function value2string(source: Expression, delimiter = '') :Token {
   const type = $typeof(source)
   switch (type) {
     case "string":
@@ -26,15 +27,14 @@ function value2string(source: Expression) :Token {
       return source as number
 
     case "array":
-      const flatted = (source as Extract<Expression, any[]>)
-      .flat()
+      const flatted = (source as /*Extract<Expression, any[]>*/ ToF[])
       .map(v => value2string(v)) as Token[]
     
       for (let i = flatted.length; i--;)
         spacer(flatted[i], i, flatted)
     
       return flatted
-      .join('')
+      .join(delimiter)
 
     case "object":
       // Type 'null' is not assignable to type 'object'
@@ -43,7 +43,10 @@ function value2string(source: Expression) :Token {
         return null
       const value = value2string(
         //@ts-ignore
-        source[fnName]
+        source[fnName],
+        isCommaSeparated(fnName)
+        ? ','
+        : ''
       )
 
       return (fnName[0] !== varPrefix) 

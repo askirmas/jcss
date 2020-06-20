@@ -6,5 +6,6 @@ export type Token = string|number|null
  * - https://stackoverflow.com/questions/39190154/typescript-restrict-number-of-objects-properties 
  */
 type Func = {[f: string]: Expression}
+export type ToF = Token | Func
 
-export type Expression = Token | Func | Expression[]
+export type Expression = ToF | ToF[] | Array<ToF | ToF[]>

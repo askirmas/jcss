@@ -27,10 +27,10 @@
     ["DONE", "string|number[]", [
       [1, "px" ], "1px"
     ]],
-    ["DEPR", "string|number[][]", [
+    ["WONT", "string|number[][]", [
       [[1], ["px"]],
       "1px",
-      ""
+      "1 px"
     ]],
     ["DONE", "string[]", [
       ["1", "px"], "1 px"
@@ -82,6 +82,10 @@
   "value mix#2": [ 
     ["DONE", "border", [
       ["solid", 1, "px", "black"], "solid 1px black"
+    ]],
+    ["DONE", "border super mix", [
+      ["solid", [1, "px"], {"hsla": [2, [50, "%"], "50", {"$opacity": 0.5}]}],
+      "solid 1px hsla(2, 50%, 50, var(--opacity, 0.5))"
     ]]
   ],
   "function as array": [
@@ -96,20 +100,20 @@
     ["DONE", "Space separator", [
       {"calc": [2, "+", 2]}, "calc(2 + 2)"
     ]],
-    ["TBD", "Comma separator @ number[]", [
+    ["DONE", "Comma separator @ number[]", [
       {"rgb": [0, 0, 0]}, "rgb(0, 0, 0)"
     ]],
-    ["TBD", "Comma separator @ string[]", [
+    ["DONE", "Comma separator @ string[]", [
       [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}],
       "polygon(50% 0%, 0% 100%, 100% 100%)",
       "polygon(50% 0% 0% 100% 100% 100%)"
     ]],
-    ["TBD", "Mix separators @ number[]", [
+    ["DONE", "Mix separators @ number[]", [
       [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}],
       "polygon(50% 0%, 0% 100%, 100% 100%)",
       "polygon(50% 0% 0% 100% 100% 100%)"
     ]],
-    ["TBD", "Mix separators @ mix[]", [
+    ["DONE", "Mix separators @ mix[]", [
       [{"polygon": [{"$point": ["50%", "0%"]}, ["0%", "$x"], "100% 100%"]}],
       "polygon(var(--point, 50% 0%), 0% var(--x), 100% 100%)",
       "polygon(var(--point, 50% 0%) 0% var(--x) 100% 100%)"
@@ -126,9 +130,13 @@
     ]]
   ],
   "nesting functions": [
-    ["DONE", "", [
+    ["WONT", "`rgb` is specific case", [
       [{"rgb": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
       "rgb(calc(2 + 2) * calc(2 + 2))"
+    ]],
+    ["DONE", "", [
+      [{"fn": [{"fn": [2, "+", 2]}, "*", [{"fn": [2, "+", 2]}]]}],
+      "fn(fn(2 + 2) * fn(2 + 2))"
     ]]
   ],
   "variable": [
@@ -169,9 +177,13 @@
     ]]
   ],
   "variable and function": [
-    ["UNST", "", [
-      [{"rgb": [{"$color": {"hsl": ["2, 2, 2,", "$opacity"]}}]}],
+    ["UNST", "Arguments length MAY be processed", [
+      [{"rgb": [{"$color": {"hsl": [2, 2, 2, "$opacity"]}}]}],
       "rgb(var(--color, hsl(2, 2, 2, var(--opacity))))"
+    ]],
+    ["DONE", "", [
+      [{"rgb": [{"$color": {"hsla": [2, 2, 2, "$opacity"]}}]}],
+      "rgb(var(--color, hsla(2, 2, 2, var(--opacity))))"
     ]]
   ]
 }
