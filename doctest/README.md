@@ -1,4 +1,4 @@
-## Suite Statuses
+## Suite Statuses/Stages
 
 | Abbr      | Description | Now      | [Modal](https://www.ietf.org/rfc/rfc2119.txt) | Fut            | Changes     | Args |
 | --------- | ----------- | -------- | -------------- | --------- | --------- | --------- |

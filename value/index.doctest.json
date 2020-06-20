@@ -139,13 +139,35 @@
       "fn(fn(2 + 2) * fn(2 + 2))"
     ]]
   ],
+  "multi keys object": [
+    ["PROP", "border", [
+      [{"$width": [1, "px"], "$style": "solid", "$color": "black"}],
+      "var(--width, 1px) var(--style, solid) var(--color, black)",
+      "var(--width, 1px)"
+    ]]
+  ],
   "variable": [
     ["DONE", "", [
       "$var", "var(--var)"
     ]],
-    ["OPT", "", [
+    ["OPT", "bash-like", [
       "${var}", "var(--var)"
+    ]],
+    ["OPT", "SASS escape", [
+      "$var", "#{$var}"
+    ]],
+    ["OPT", "SASS escaped", [
+      "#{$var}", "var(--var)"
     ]]
+  ],
+  "variable with SASS target": [
+    ["PROP", "As is for SASS", [
+      "$var", "$var"
+    ]],
+    ["PROP", "SASS escaped", [
+      "$var", "#{$var}"
+    ]],
+    "Sass snippet https://sass-lang.com/documentation/modules/meta#variable-exists"
   ],
   "variable with default as object": [
     ["DONE", "", [
@@ -157,10 +179,9 @@
     ["DONE", "", [
       [{"$v1": {"$v2": [0, "px"]}}],
       "var(--v1, var(--v2, 0px))"
-    ]],
-    "Scss snippet https://sass-lang.com/documentation/modules/meta#variable-exists"
+    ]]
   ],
-  "variable with default as string": [
+  "variable with default in string": [
     ["WONT", "bash-like", [
       "${var:=0px}", "var(--var, 0px)"
     ]],
