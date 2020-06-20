@@ -1,7 +1,22 @@
 {
   "definitions": {
+    "Options": {
+      "title": "Options",
+      "type": "string",
+      "default": ""
+    },
     "$arguments": {
-      "$ref": "./definitions.schema.json#/definitions/Expression"
+      "anyOf": [
+        {"$ref": "./definitions.schema.json#/definitions/Expression"},
+        {
+          "type": "array",
+          "additionalItems": false,
+          "items": [
+            {"$ref": "./definitions.schema.json#/definitions/Expression"},
+            {"$ref": "#/definitions/Options"}
+          ]
+        }
+      ]
     },
     "$return": {
       "$ref": "./definitions.schema.json#/definitions/Token"
