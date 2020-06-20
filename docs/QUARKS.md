@@ -1,4 +1,8 @@
+# Quarks
+
 ## Processing
+
+- *json*
 
 ```json
 {
@@ -6,6 +10,10 @@
     "$color": [{"rgba": [0, 0, 0, $opacity]}]
 }
 ```
+
+- *md*
+
+See [*quarks-styleguide.md* example](#quarks-styleguide.md)
 
 ### Output options
 
@@ -54,4 +62,14 @@
     --color: rgba(0, 0, 0, 0.5);
 }
 ```
+
+#### *quarks-styleguide.md*
+
+| Opacity consts | Value | Example                                  |
+| -------------- | ----- | ---------------------------------------- |
+| $opacity        | `0.5` | <span style="opacity:0.5">opacity</span> |
+
+| Color consts | Value | Example                                  |
+| -------------- | ----- | ---------------------------------------- |
+| $color        | `rgba(0, 0, 0, 0.5)` | <span style="color: rgba(0, 0, 0, 0.5)">opacity</span> |
 
