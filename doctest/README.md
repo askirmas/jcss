@@ -13,6 +13,7 @@
 | `OPT` | Optional | `X !> Y`<br/> `X ?> Z` | MAY | `X => Y` | O | 2-3 |
 | `PROP` | Proposal | `X => Y`<br/>`N => Z` | MAY | `X => Z`<br/>`N => Y` | IO | 4 |
 | `BRK` | Breaking |  |  |  |  |  |
+| `QUES` | Question | `? => Y` | *how* | `X => Y` | I | 1 |
 
 
 
@@ -38,6 +39,7 @@ BUG{{Bug}}
 OPT{{Optional}}
 PROP{{Proposal}}
 BRK{{Breaking}}
+QUEST{{Question}}
 
 DEPR ==major==> WONT
 LEG -.-> DEPR
@@ -56,7 +58,6 @@ BUG --pre--> UNST
 
 OPT -.-> TBD
 OPT -.-> WONT
-
 
 BRK ==major==> DONE 
 ```
