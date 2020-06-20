@@ -1,13 +1,23 @@
 import { Expression, Token, ToF } from "./defs";
+import {
+  varPrefix,
+  functionPrefix,
+  cssVarPrefix,
+  cssVarCallPrefix,
+  comma,
+  space,
+  empty,
+  brl,
+  brr
+} from "./config.json"
 import { $typeof } from "../typeof";
 import { isUnit } from "../schemas/length-unit"
 import { isCommaSeparated } from "../schemas/function";
 
-const {keys: $keys} = Object
 type Dict<T = any> = Exclude<{[prop: string]: T}, any[]>
 
-const varPrefix = "$"
-, functionPrefix = "@"
+const {keys: $keys} = Object
+, varPrefixLength = varPrefix.length
 
 export {
   value2string,
@@ -15,12 +25,12 @@ export {
 }
 
 // TODO Without recursion
-function value2string(source: Expression, delimiter = '') :Token {
+function value2string(source: Expression, delimiter = empty) :Token {
   const type = $typeof(source)
   switch (type) {
     case "string":
       const str = source as string
-      return str[0] !== varPrefix
+      return !isVar(str)
       ? str
       : varRef(str)
 
@@ -50,16 +60,16 @@ function value2string(source: Expression, delimiter = '') :Token {
           source[fnName],
           fnName[0] === functionPrefix
           || isCommaSeparated(fnName)
-          ? ','
-          : ''
+          ? comma
+          : empty
         )
 
-        fnNames[i] = (fnName[0] !== varPrefix) 
-        ?`${fnName}(${value})`
+        fnNames[i] = (!isVar(fnName))
+        ?`${fnName}${brl}${value}${brr}`
         : varRef(fnName, value)
       }
 
-      return fnNames.join(" ")
+      return fnNames.join(space)
 
     default:
       return null
@@ -78,15 +88,28 @@ function spacer(token: Token, i: number, source: Token[]) {
   )
     return
 
-  return source[i] = ` ${token}`
+  return source[i] = `${space}${token}`
 }
 
 function varRef(name: string, $default?: Token) {
-  return `var(--${
-    name.slice(1)
+  return `${
+    cssVarCallPrefix
+  }${
+    brl
+  }${
+    cssVarPrefix
+  }${
+    name.slice(varPrefixLength)
   }${
     $default === undefined || $default === null
-    ? ""
-    : `, ${$default}`
-  })`
+    ? empty
+    : `${comma}${space}${$default}`
+  }${brr}`
+}
+
+function isVar(name: string) {
+  /* istanbul ignore next Will be solved on different targets of quarks */
+  return varPrefixLength === 1
+  ? name[0] === varPrefix
+  : name.startsWith(varPrefix)
 }

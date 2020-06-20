@@ -1,0 +1,11 @@
+{
+   "varPrefix": "$",
+   "functionPrefix": "@",
+   "cssVarPrefix": "--",
+   "cssVarCallPrefix": "var",
+   "comma": ",",
+   "space": " ",
+   "empty": "",
+   "brl": "(",
+   "brr": ")"
+}
