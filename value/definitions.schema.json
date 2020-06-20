@@ -1,37 +1,28 @@
 {
   "definitions": {
-    "StringLike": {
-      "title": "StringLike",
+    "Token": {
+      "description": "Token",
       "type": ["string", "number", "null"]
     },
-    "CssSimpleValue": {
-      "title": "CssSimpleValue",
-      "anyOf": [
-        {"$ref": "#/definitions/StringLike"},
-        {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CssSimpleValue"
-          }
-        }
-      ]
-    },
-    "CssFunction": {
-      "title": "CssFunction",
+    "Function": {
+      "description": "Function",
       "type": "object",
       "maxProperties": 1,
       "additionalProperties": {
-        "oneOf": [
-          {"$ref": "#/definitions/CssSimpleValue"},
-          {"$ref": "#/definitions/CssFunction"}
-        ]
+        "$ref": "#/definitions/Expression"
       }
     },
-    "CssValue": {
-      "title": "CssValue",
+    "Expression": {
+      "description": "Expression",
       "oneOf": [
-        {"$ref": "#/definitions/CssSimpleValue"},
-        {"$ref": "#/definitions/CssFunction"}
+        {"$ref": "#/definitions/Token"},
+        {"$ref": "#/definitions/Function"},
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Expression"
+          }
+        }
       ]
     }  
   }

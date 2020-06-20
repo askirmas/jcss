@@ -1,4 +1,4 @@
-import { CssValue, StringLike } from "./defs";
+import { Expression, Token } from "./defs";
 import { $typeof } from "../typeof";
 import { isUnit } from "../schemas/length-unit"
 
@@ -13,7 +13,7 @@ export {
 }
 
 // TODO Without recursion
-function value2string(source: CssValue) :StringLike {
+function value2string(source: Expression) :Token {
   const type = $typeof(source)
   switch (type) {
     case "string":
@@ -26,9 +26,9 @@ function value2string(source: CssValue) :StringLike {
       return source as number
 
     case "array":
-      const flatted = (source as Extract<CssValue, any[]>)
+      const flatted = (source as Extract<Expression, any[]>)
       .flat()
-      .map(v => value2string(v)) as StringLike[]
+      .map(v => value2string(v)) as Token[]
     
       for (let i = flatted.length; i--;)
         spacer(flatted[i], i, flatted)
@@ -38,7 +38,7 @@ function value2string(source: CssValue) :StringLike {
 
     case "object":
       // Type 'null' is not assignable to type 'object'
-      const fnName = $keys(source!)[0] as undefined | keyof Extract<CssValue, Dict> & string
+      const fnName = $keys(source!)[0] as undefined | keyof Extract<Expression, Dict> & string
       if (typeof fnName !== "string")
         return null
       const value = value2string(
@@ -55,7 +55,7 @@ function value2string(source: CssValue) :StringLike {
   }
 }
 
-function spacer(token: StringLike, i: number, source: StringLike[]) {
+function spacer(token: Token, i: number, source: Token[]) {
   if (i === 0)
     return
   const prev = source[i - 1]
@@ -70,7 +70,7 @@ function spacer(token: StringLike, i: number, source: StringLike[]) {
   return source[i] = ` ${token}`
 }
 
-function varRef(name: string, $default?: StringLike) {
+function varRef(name: string, $default?: Token) {
   return `var(--${
     name.slice(1)
   }${

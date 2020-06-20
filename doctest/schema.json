@@ -17,7 +17,7 @@
           "type": "string"
         },
         {
-          "title": "Suite",
+          "title": "Suite Data",
           "type": "array",
           "items": [
             {
@@ -36,6 +36,7 @@
   },
   "definitions": {
     "Suite": {
+      "title": "Suite",
       "type": "array",
       "minItems": 2,
       "maxItems": 4,
