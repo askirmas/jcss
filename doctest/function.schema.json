@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "definitions": {
+      "type": "object",
+      "required": ["$arguments", "$return"],
+      "default": {"$arguments": {}, "$return": {}},
+      "properties": {
+        "$arguments": {
+          "$ref": "http://json-schema.org/draft-07/schema"
+        },
+        "$return": {
+          "$ref": "http://json-schema.org/draft-07/schema"
+        }        
+      }
+    }
+  },
+  "definitions": {"$arguments": {}, "$return": {}},
+  "default": {"definitions": {"$arguments": {}, "$return": {}}}
+}

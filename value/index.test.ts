@@ -1,5 +1,5 @@
 import {value2string} from "."
-import testData from "./index.test.json"
+import testData from "./index.doctest.json"
 import { DocTest, makeNot } from "../doctest/def"
 
 

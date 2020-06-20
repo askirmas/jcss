@@ -21,6 +21,13 @@
     },
     {
       "fileMatch": [
+        "function-schema.json",
+        "*.function-schema.*json"
+      ],
+      "url": "./doctest/function.schema.json"
+    },
+    {
+      "fileMatch": [
         "*.jcss",
         "*.jcss.*json"
       ],

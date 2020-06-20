@@ -1,0 +1,10 @@
+{
+  "definitions": {
+    "$arguments": {
+      "$ref": "./definitions.schema.json#/definitions/Expression"
+    },
+    "$return": {
+      "$ref": "./definitions.schema.json#/definitions/Token"
+    }
+  }
+}

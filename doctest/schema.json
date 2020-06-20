@@ -4,7 +4,7 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "default": "./schema.json"
+      "default": "./doctest-schema.json"
     }
   },
   "additionalProperties": {
@@ -43,19 +43,19 @@
       "items": [
         {
           "title": "Current Input/Arguments",
-          "$ref": "./arguments.schema.json"
+          "$ref": "./function-schema.json#/definitions/$arguments"
         },
         {
           "title": "Output/Return",
-          "$ref": "./return.schema.json"
+          "$ref": "./function-schema.json#/definitions/$return"
         },
         {
           "title": "Output/Return",
-          "$ref": "./return.schema.json"
+          "$ref": "./function-schema.json#/definitions/$return"
         },
         {
           "title": "New Input/Arguments",
-          "$ref": "./arguments.schema.json"
+          "$ref": "./function-schema.json#/definitions/$arguments"
         }
       ],
       "additionalItems": {
