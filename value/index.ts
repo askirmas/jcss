@@ -38,22 +38,28 @@ function value2string(source: Expression, delimiter = '') :Token {
       .join(delimiter)
 
     case "object":
-      // Type 'null' is not assignable to type 'object'
-      const fnName = $keys(source!)[0] as undefined | keyof Extract<Expression, Dict> & string
-      if (typeof fnName !== "string")
+      const fnNames = $keys(source! as Extract<Expression, Dict>)
+      , {length} = fnNames
+      if (length === 0)
         return null
-      const value = value2string(
-        //@ts-ignore
-        source[fnName],
-        fnName[0] === functionPrefix
-        || isCommaSeparated(fnName)
-        ? ','
-        : ''
-      )
 
-      return (fnName[0] !== varPrefix) 
-      ?`${fnName}(${value})`
-      : varRef(fnName, value) 
+      for (let i = length; i--;) {
+        const fnName = fnNames[i]
+        , value = value2string(
+          //@ts-ignore
+          source[fnName],
+          fnName[0] === functionPrefix
+          || isCommaSeparated(fnName)
+          ? ','
+          : ''
+        )
+
+        fnNames[i] = (fnName[0] !== varPrefix) 
+        ?`${fnName}(${value})`
+        : varRef(fnName, value)
+      }
+
+      return fnNames.join(" ")
 
     default:
       return null

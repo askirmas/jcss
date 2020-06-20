@@ -140,7 +140,7 @@
     ]]
   ],
   "multi keys object": [
-    ["PROP", "border", [
+    ["DONE", "border", [
       [{"$width": [1, "px"], "$style": "solid", "$color": "black"}],
       "var(--width, 1px) var(--style, solid) var(--color, black)",
       "var(--width, 1px)"

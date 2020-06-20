@@ -7,7 +7,6 @@
     "Function": {
       "description": "Function",
       "type": "object",
-      "maxProperties": 1,
       "additionalProperties": {
         "$ref": "#/definitions/Expression"
       }
