@@ -46,8 +46,8 @@
     ["DONE", "2", [
       [2, "+2"], "2 +2"
     ]],
-    ["OPT", "prettify", [
-      "2+2", "2 + 2"
+    ["WONT", "prettify", [
+      "2+2", "2 + 2", "2+2"
     ]]
   ],
   "sequence": [
@@ -153,10 +153,10 @@
     "Scss snippet https://sass-lang.com/documentation/modules/meta#variable-exists"
   ],
   "variable with default as string": [
-    ["OPT", "bash-like", [
+    ["WONT", "bash-like", [
       "${var:=0px}", "var(--var, 0px)"
     ]],
-    ["OPT", "", [
+    ["WONT", "", [
       "${var, 0px}", "var(--var, 0px)"
     ]]
   ],

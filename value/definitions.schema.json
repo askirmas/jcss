@@ -1,7 +1,7 @@
 {
   "definitions": {
     "Token": {
-      "description": "Token",
+      "description": "Token. Considered as it is",
       "type": ["string", "number", "null"]
     },
     "Function": {
