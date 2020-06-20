@@ -185,5 +185,12 @@
       [{"rgb": [{"$color": {"hsla": [2, 2, 2, "$opacity"]}}]}],
       "rgb(var(--color, hsla(2, 2, 2, var(--opacity))))"
     ]]
+  ],
+  "custom function": [
+    ["PROP", "At least for SCSS. Requires target option or change default separation to comma", [
+      [{"@sum": [1, 2, 3]}],
+      "@sum(1, 2, 3)",
+      "@sum(1 2 3)"
+    ]]
   ]
 }
