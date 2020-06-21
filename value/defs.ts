@@ -1,4 +1,6 @@
-export type Token = string|number|null
+import { Stringish } from "../util-defs"
+
+export type Token = Stringish
 
 /**
  * //TODO As Singleton

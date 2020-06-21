@@ -1,6 +1,6 @@
 import { Body } from "./definitions"
 import { $isArray, $set } from "./utils"
-import { Assoc, ScalarValue } from "./util-defs"
+import { Assoc, Stringish } from "./util-defs"
 
 export {
   body2assoc as body2assoc
@@ -8,7 +8,7 @@ export {
 
 const propDelimiter = '-'
 
-function body2assoc(body: Body, target: Assoc<string, ScalarValue> = new Map()) {
+function body2assoc(body: Body, target: Assoc<string, Stringish> = new Map()) {
   const entries: (undefined | string | [string[], Body[string]])[] = Object.keys(body)
 
   for (let i = 0; i < entries.length; i++) {

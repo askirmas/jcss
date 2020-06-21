@@ -145,3 +145,49 @@ describe($set.name, () => {
     {"a": 1, "b": 2}
   ))
 })
+
+describe.skip('con and dis', () => {
+  it('multi', () => expect([
+    ["input", ".Input"],
+    ["~", "~ *"],
+    ".Target"
+  ]).toStrictEqual([
+    ["input", "~", ".Target"],
+    [".Input", "~", ".Target"],
+    ["input", "~ *", ".Target"],
+    [".Input", "~ *", ".Target"],
+  ]))
+
+  it('add/rotate', () => expect([
+    ["input", ".Input", null],
+    [":checked", ".Checked", ".Input--Checked"],
+    "~",
+    ".Target"
+  ]).toStrictEqual([
+    ["input", ":checked", "~", ".Target"],
+    [".Input", ".Checked", "~", ".Target"],
+    [null, ".Input--Checked", "~", ".Target"]
+  ]))
+
+  it("multi add", () => expect([
+    [
+      [
+        ["input", ".Input"],
+        ".stateEntry",
+        [":checked", ".Checked"]
+      ]
+    ],
+    "~",
+    [
+      null,
+      " "
+    ],
+    ".Target"
+  ]).toStrictEqual([
+    ["input", ".stateEntry", ":checked", "~", null, ".Target"],
+    [".Input", ".stateEntry", ".Checked", "~", null, ".Target"],
+    ["input", ".stateEntry", ":checked", "~", " ", ".Target"],
+    [".Input", ".stateEntry", ".Checked", "~", " ", ".Target"],
+  ]))
+
+})

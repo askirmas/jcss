@@ -1,4 +1,4 @@
-import { Assoc } from "./util-defs"
+import { Assoc, AssocKey, AssocValue } from "./util-defs"
 
 const {isArray: $isArray} = Array
 

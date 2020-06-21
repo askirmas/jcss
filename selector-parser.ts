@@ -1,4 +1,4 @@
-import { Grammar4Reg } from "./util-defs"
+import { Grammar4Reg } from "./definitions"
 
 export {
   selectorParser

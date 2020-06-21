@@ -1,4 +1,4 @@
-import { orArray, ScalarValue } from "./util-defs"
+import { orArray, Stringish } from "./util-defs"
 
 //TODO Replace `SimpleBody` with `Body`
 export type CSSRepresentation = Array<string|string[]|SimpleBody>
@@ -27,4 +27,12 @@ type SimpleBody = {
 }
 
 //`orArray` doesn't work
-export type Value = ScalarValue|Exclude<ScalarValue, null>[]
+export type Value = Stringish|Exclude<Stringish, null>[]
+
+
+export type Grammar4Reg = Record<string, Term4Reg>
+type Term4Reg = {
+  prefix?: string
+  word: string
+  postfix?: string
+}

@@ -1,5 +1,5 @@
 import {body2assoc} from "./body"
-import { ScalarValue } from "./util-defs"
+import { Stringish } from "./util-defs"
 
 it('1', () => expect(body2assoc({
   "": "empty string",
@@ -21,7 +21,7 @@ it('1', () => expect(body2assoc({
   ["grid-column", 5],
   ["grid-row-start", 1],
   ["grid-row-end", null],
-] as [string, ScalarValue][])))
+] as [string, Stringish][])))
 
 it('append to map', () => expect(body2assoc(
   {
