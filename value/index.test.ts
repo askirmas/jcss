@@ -1,6 +1,6 @@
 import {value2string} from "."
 import testData from "./index.doctest.json"
-import { DocTest, makeNot } from "../doctest/def"
+import { DocTest } from "../doctest/def"
 import runner from "../doctest/runner"
 
 describe(value2string.name, () => runner(

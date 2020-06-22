@@ -6,7 +6,6 @@
   "scripts": {
     "ghw": "git-hooks-wrapper",
     "prestart": "git config include.path ../.gitconfig && git-hooks-wrapper init",
-
     "pretest": "jest --clearCache",
     "test--dry": "jest",
     "test:dev": "npm run test--dry -- --watch --onlyFailures --runInBand",

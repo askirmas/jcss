@@ -14,7 +14,7 @@ function runner<F extends Func>(fn: F, suites: DocTest<F>) {
 
         const [status, description, [ret0, arg, ret1, argNew]] = suite
         , is = !makeNot(status)
-        , v1 = fn(arg)
+        , v1 = fn(...arg)
         
         /* istanbul ignore next */
         if (is === undefined)
@@ -30,7 +30,7 @@ function runner<F extends Func>(fn: F, suites: DocTest<F>) {
             it('2', exp(!is, v1, ret1))
             /* istanbul ignore next */
             if (argNew !== undefined)
-              it('3', exp(is, fn(argNew), ret1))
+              it('3', exp(is, fn(...argNew), ret1))
           })
       })
     })
