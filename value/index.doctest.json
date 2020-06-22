@@ -1,5 +1,6 @@
 {
   "$schema": "./doctest.schema.json",
+  "abc": "//TODO",
   "empties": [
     ["DONE", "", [
       "", [""]

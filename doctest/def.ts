@@ -5,11 +5,11 @@ export type eStatus = keyof typeof schema["definitions"]["Status"]["definitions"
 
 export type Suite<A, R> = [R, A, R?, A?]
 
-export type DocTest<F extends Func> = {
+export type DocTest<F extends Func, Status extends string = eStatus> = {
   $schema: string
 } & {
-  [Topic: string]: Array<string|[
-    eStatus,
+  [Topic: string]: string | Array<string|[
+    Status,
     string,
     Suite<Parameters<F>, ReturnType<F>>
   ]>
@@ -22,10 +22,13 @@ export {
   makeNot
 }
 
-function makeNot(status: eStatus) {
+function makeNot(status: eStatus) :boolean;
+function makeNot(status: string) :undefined;
+function makeNot(status: any) {
   if (statusesTrue.has(status))
     return false
   if (statusesFalse.has(status))
     return true
+  return undefined
 }
 

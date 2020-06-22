@@ -9,8 +9,12 @@
   },
   "additionalProperties": {
     "title": "Topic",
-    "type": "array",
+    "type": ["array", "string"],
     "default": [],
+    "examples": [
+      [],
+      "No incidents yet"
+    ],
     "items": {
       "oneOf": [
         {

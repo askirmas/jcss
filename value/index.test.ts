@@ -5,6 +5,7 @@ import runner from "../doctest/runner"
 
 describe(value2string.name, () => runner(
   value2string,
-  testData as unknown as DocTest<typeof value2string>
+  // Due to Tuple
+  testData as unknown as DocTest<typeof value2string, string>
 ))
 

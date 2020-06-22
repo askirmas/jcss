@@ -1,14 +1,17 @@
 /* global describe it */
 import { Func } from "../util-defs"
-import { DocTest, makeNot } from "./def"
+import { DocTest, makeNot, eStatus } from "./def"
 
 export default runner
 
-function runner<F extends Func>(fn: F, suites: DocTest<F>) {
+function runner<F extends Func, S extends string = eStatus>(fn: F, suites: DocTest<F, S>) {
   for (const name in suites)
   if (name !== "$schema")
-    describe(name, () => {  
-      suites[name].forEach(suite => {
+    describe(name, () => {
+      const incidentsData = suites[name]
+      if (typeof incidentsData === "string")
+        return it.todo(incidentsData)
+      incidentsData.forEach(suite => {
         if (typeof suite === 'string')
           return it.todo(suite)
 
