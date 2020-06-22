@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { DocTest, Monad } from "./def";
+import { DocTest, Func } from "./def";
 
 const {log: $log} = console
 , {stringify: $stringify} = JSON
@@ -20,7 +20,7 @@ export {
   json2md
 }
 
-function json2md<F extends Monad>(source: DocTest<F>) :string[] {
+function json2md<F extends Func>(source: DocTest<F>) :string[] {
   const $return: Array<undefined|string> = []
 
   for (const topic in source) {

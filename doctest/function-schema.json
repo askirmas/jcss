@@ -1,6 +1,8 @@
 {
   "definitions": {
-    "$arguments": {},
+    "$arguments": {
+      "type": "array"
+    },
     "$return": {}
   }
 }

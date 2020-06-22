@@ -10,15 +10,18 @@
   "additionalProperties": {
     "title": "Topic",
     "type": "array",
+    "default": [],
     "items": {
       "oneOf": [
         {
           "title": "TODO",
-          "type": "string"
+          "type": "string",
+          "default": "//TODO"
         },
         {
           "title": "Suite Data",
           "type": "array",
+          "default": ["TBD", "New Incident", []],
           "items": [
             {
               "title": "Status",

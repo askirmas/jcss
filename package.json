@@ -9,7 +9,8 @@
     "pretest": "jest --clearCache",
     "test--dry": "jest",
     "test:dev": "npm run test--dry -- --watch --onlyFailures --runInBand",
-    "test": "npm run test--dry"
+    "test": "npm run test--dry",
+    "doctest:init": "$PWD/doctest/init.sh"
   },
   "repository": {
     "type": "git",

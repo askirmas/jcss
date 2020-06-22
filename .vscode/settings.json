@@ -15,12 +15,6 @@
     },
     {
       "fileMatch": [
-        "*.doctest.*json"
-      ],
-      "url": "./doctest/schema.json"
-    },
-    {
-      "fileMatch": [
         "function-schema.json",
         "*.function-schema.*json"
       ],

@@ -1,4 +1,4 @@
-import schema from "./schema.json"
+import schema from "./doctest.schema.json"
 import { Func } from "../util-defs"
 
 export type eStatus = keyof typeof schema["definitions"]["Status"]["definitions"]

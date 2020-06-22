@@ -1,0 +1,10 @@
+{
+  "$schema": "./doctest.schema.json",
+  "My first test": [
+    [
+      "TBD",
+      "First incident",
+      []
+    ]
+  ]
+}
