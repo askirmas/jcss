@@ -20,3 +20,7 @@ export type Dict<T extends JSScalar = JsonScalar> = {
   [key: string]: JSScalar | JSScalar[] | Dict<T>
 }
 export type Structural<T extends JSScalar = JsonScalar> = T | T[] | Dict<T>
+
+export type Func<P extends any[] = any[], R extends any = any> = (...args: P) => R 
+export type Monad = (arg: any) => any
+

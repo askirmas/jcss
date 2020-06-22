@@ -1,10 +1,9 @@
 import schema from "./schema.json"
+import { Monad } from "../util-defs"
 
 export type eStatus = keyof typeof schema["definitions"]["Status"]["definitions"]
 
 export type Suite<A, R> = [R, A, R?, A?]
-
-export type Monad = (arg: any) => any
 
 export type DocTest<F extends Monad> = {
   $schema: string
@@ -18,6 +17,7 @@ export type DocTest<F extends Monad> = {
 
 const statusesTrue = new Set<eStatus>(["DONE", "LEG", "DEPR", "BUG-", "UNST"]) 
 , statusesFalse = new Set<eStatus>(["WONT", "TBD", "BUG+", "OPT", "PROP"])
+
 export {
   makeNot
 }
