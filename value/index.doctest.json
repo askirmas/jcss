@@ -8,10 +8,10 @@
       null, null
     ]],
     ["DONE", "[]", [
-      [], ""
+      "", []
     ]],
     ["DONE", "{}", [
-      {}, null
+      null, {}
     ]]
   ],
   "metric value": [
@@ -22,142 +22,165 @@
       "1px", "1px"
     ]],
     ["DONE", "[string]", [
-      ["1px"], "1px"
+      "1px", ["1px"]
     ]],
     ["DONE", "string|number[]", [
-      [1, "px" ], "1px"
+      "1px", [1, "px" ]
     ]],
     ["WONT", "string|number[][]", [
-      [[1], ["px"]],
       "1px",
+      [[1], ["px"]],
       "1 px"
     ]],
     ["DONE", "string[]", [
-      ["1", "px"], "1 px"
+      "1 px", ["1", "px"]
     ]]
   ], 
   "expression": [
     ["DONE", "ordinary", [
-      [2, "+", 2], "2 + 2"
+      "2 + 2",
+      [2, "+", 2]
     ]],
     ["DONE", "1", [
-      ["2+", 2], "2+ 2"
+      "2+ 2",
+      ["2+", 2]
     ]],
     ["DONE", "2", [
-      [2, "+2"], "2 +2"
+      "2 +2",
+      [2, "+2"]
     ]],
     ["WONT", "prettify", [
-      "2+2", "2 + 2", "2+2"
+      "2 + 2",
+      "2+2",
+      "2+2"
     ]]
   ],
   "sequence": [
     ["DONE", "string[]", [
-      ["1px", "solid", "black"],
-      "1px solid black"
+      "1px solid black",
+      ["1px", "solid", "black"]
     ]],
     ["DONE", "number[]", [
-      [1, 2, 3], "1 2 3"
+      "1 2 3",
+      [1, 2, 3]
     ]]
   ],
   "value mix#1 - sticking": [
     ["DONE", "1", [
-      ["1p", "x"], "1p x"
+      "1p x",
+      ["1p", "x"]
     ]],
     ["DONE", "2", [
-      ["1", "px", 1], "1 px 1"
+      "1 px 1",
+      ["1", "px", 1]
     ]],
     ["DONE", "3", [
-      [1, 1, "px"], "1 1px"
+      "1 1px",
+      [1, 1, "px"]
     ]],
     ["DONE", "4", [
-      [1, "px", 1], "1px 1"
+      "1px 1",
+      [1, "px", 1]
     ]],
     ["DONE", "5", [
-      [1, "1", "px"], "1 1 px"
+      "1 1 px",
+      [1, "1", "px"]
     ]],
     ["WONT", "6", [
-      ["", 1, "px", ""], "1px", " 1px "
+      "1px",
+      ["", 1, "px", ""],
+      " 1px "
     ]]
   ],
   "value mix#2": [ 
     ["DONE", "border", [
-      ["solid", 1, "px", "black"], "solid 1px black"
+      "solid 1px black",
+      ["solid", 1, "px", "black"]
     ]],
     ["DONE", "border super mix", [
-      ["solid", [1, "px"], {"hsla": [2, [50, "%"], "50", {"$opacity": 0.5}]}],
-      "solid 1px hsla(2, 50%, 50, var(--opacity, 0.5))"
+      "solid 1px hsla(2, 50%, 50, var(--opacity, 0.5))",
+      ["solid", [1, "px"], {"hsla": [2, [50, "%"], "50", {"$opacity": 0.5}]}]
     ]]
   ],
   "function as array": [
     ["PROP", "", [
-      ["calc", 2, "+", 2], "calc(2 + 2)"
+      "calc(2 + 2)",
+      ["calc", 2, "+", 2]
+      
     ]],
     ["PROP", "calc brackets", [
-      ["calc", [2, "+", 2], "*", [2, "+", 2]], "calc((2 + 2) * (2 + 2))"
+      "calc((2 + 2) * (2 + 2))",
+      ["calc", [2, "+", 2], "*", [2, "+", 2]]
     ]]    
   ],
   "function as object": [
     ["DONE", "Space separator", [
-      {"calc": [2, "+", 2]}, "calc(2 + 2)"
+      "calc(2 + 2)",
+      {"calc": [2, "+", 2]}
     ]],
     ["DONE", "Comma separator @ number[]", [
-      {"rgb": [0, 0, 0]}, "rgb(0, 0, 0)"
+      "rgb(0, 0, 0)",
+      {"rgb": [0, 0, 0]}
     ]],
     ["DONE", "Comma separator @ string[]", [
-      [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}],
       "polygon(50% 0%, 0% 100%, 100% 100%)",
+      [{"polygon": ["50% 0%", "0% 100%", "100% 100%"]}],
       "polygon(50% 0% 0% 100% 100% 100%)"
     ]],
     ["DONE", "Mix separators @ number[]", [
-      [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}],
       "polygon(50% 0%, 0% 100%, 100% 100%)",
+      [{"polygon": [["50%", "0%"], ["0%", "100%"], ["100%", "100%"]]}],
       "polygon(50% 0% 0% 100% 100% 100%)"
     ]],
     ["DONE", "Mix separators @ mix[]", [
-      [{"polygon": [{"$point": ["50%", "0%"]}, ["0%", "$x"], "100% 100%"]}],
       "polygon(var(--point, 50% 0%), 0% var(--x), 100% 100%)",
+      [{"polygon": [{"$point": ["50%", "0%"]}, ["0%", "$x"], "100% 100%"]}],
       "polygon(var(--point, 50% 0%) 0% var(--x) 100% 100%)"
     ]]
   ],
   "calc omit": [
     ["PROP", "array", [
-      ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]],
-      "calc((2 + 2) * (2 + 2))"
+      "calc((2 + 2) * (2 + 2))",
+      ["calc", ["calc", 2, "+", 2], "*", ["calc", 2, "+", 2]]
     ]],
     ["OPT", "object", [
-      [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
-      "calc((2 + 2) * (2 + 2))"
+      "calc((2 + 2) * (2 + 2))",
+      [{"calc": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}]
     ]]
   ],
   "nesting functions": [
     ["WONT", "`rgb` is specific case", [
-      [{"rgb": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}],
-      "rgb(calc(2 + 2) * calc(2 + 2))"
+      "rgb(calc(2 + 2) * calc(2 + 2))",
+      [{"rgb": [{"calc": [2, "+", 2]}, "*", [{"calc": [2, "+", 2]}]]}]
     ]],
     ["DONE", "", [
-      [{"fn": [{"fn": [2, "+", 2]}, "*", [{"fn": [2, "+", 2]}]]}],
-      "fn(fn(2 + 2) * fn(2 + 2))"
+      "fn(fn(2 + 2) * fn(2 + 2))",
+      [{"fn": [{"fn": [2, "+", 2]}, "*", [{"fn": [2, "+", 2]}]]}]
     ]]
   ],
   "multi keys object": [
     ["DONE", "border", [
-      [{"$width": [1, "px"], "$style": "solid", "$color": "black"}],
       "var(--width, 1px) var(--style, solid) var(--color, black)",
+      [{"$width": [1, "px"], "$style": "solid", "$color": "black"}],
       "var(--width, 1px)"
     ]]
   ],
   "variable": [
     ["DONE", "", [
-      "$var", "var(--var)"
+      "var(--var)",
+      "$var"
     ]],
     ["OPT", "bash-like", [
-      "${var}", "var(--var)"
+      "var(--var)",
+      "${var}"
     ]],
     ["OPT", "SASS escape", [
-      "$var", "#{$var}"
+      "#{$var}",
+      "$var"
     ]],
     ["OPT", "SASS escaped", [
-      "#{$var}", "var(--var)"
+      "var(--var)",
+      "#{$var}"
     ]]
   ],
   "variable with SASS target": [
@@ -165,20 +188,23 @@
       "$var", "$var"
     ]],
     ["PROP", "SASS escaped", [
-      "$var", "#{$var}"
+      "#{$var}",
+      "$var"
     ]],
     "Sass snippet https://sass-lang.com/documentation/modules/meta#variable-exists"
   ],
   "variable with default as object": [
     ["DONE", "", [
-      [{"$var": "0px"}], "var(--var, 0px)"
+      "var(--var, 0px)",
+      [{"$var": "0px"}]
     ]],
     ["DONE", "", [
-      [{"$var": [0, "px"]}], "var(--var, 0px)"
+      "var(--var, 0px)",
+      [{"$var": [0, "px"]}]
     ]],
     ["DONE", "", [
-      [{"$v1": {"$v2": [0, "px"]}}],
-      "var(--v1, var(--v2, 0px))"
+      "var(--v1, var(--v2, 0px))",
+      [{"$v1": {"$v2": [0, "px"]}}]
     ]]
   ],
   "variable with default in string": [
@@ -191,26 +217,28 @@
   ],
   "variable with default as array": [
     ["PROP", "in case of only 2 items", [
-      ["$var", "0px"], "var(--var, 0px)"
+      "var(--var, 0px)",
+      ["$var", "0px"]
     ]],
     ["PROP", "", [
-      ["$var", ":=", "0px"], "var(--var, 0px)"
+      "var(--var, 0px)",
+      ["$var", ":=", "0px"]
     ]]
   ],
   "variable and function": [
     ["UNST", "Arguments length MAY be processed", [
-      [{"rgb": [{"$color": {"hsl": [2, 2, 2, "$opacity"]}}]}],
-      "rgb(var(--color, hsl(2, 2, 2, var(--opacity))))"
+      "rgb(var(--color, hsl(2, 2, 2, var(--opacity))))",
+      [{"rgb": [{"$color": {"hsl": [2, 2, 2, "$opacity"]}}]}]
     ]],
     ["DONE", "`hsla` with variable example", [
-      [{"rgb": [{"$color": {"hsla": [2, 2, 2, "$opacity"]}}]}],
-      "rgb(var(--color, hsla(2, 2, 2, var(--opacity))))"
+      "rgb(var(--color, hsla(2, 2, 2, var(--opacity))))",
+      [{"rgb": [{"$color": {"hsla": [2, 2, 2, "$opacity"]}}]}]
     ]]
   ],
   "custom function": [
     ["DONE", "", [
-      [{"@sum": [1, 2, 3]}],
       "@sum(1, 2, 3)",
+      [{"@sum": [1, 2, 3]}],
       "@sum(1 2 3)"
     ]]
   ]

@@ -2,7 +2,7 @@ import schema from "./schema.json"
 
 export type eStatus = keyof typeof schema["definitions"]["Status"]["definitions"]
 
-export type Suite<A, R> = [A, R, R?, A?]
+export type Suite<A, R> = [R, A, R?, A?]
 
 export type Monad = (arg: any) => any
 

@@ -13,7 +13,7 @@ describe(value2string.name, () => {
           if (typeof suite === 'string')
             return it.todo(suite)
 
-          const [status, description, [arg, ret0, ret1, argNew]] = suite
+          const [status, description, [ret0, arg, ret1, argNew]] = suite
           , is = !makeNot(status)
           , v1 = value2string(arg)
           

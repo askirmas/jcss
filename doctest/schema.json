@@ -42,12 +42,12 @@
       "maxItems": 4,
       "items": [
         {
-          "title": "Current Input/Arguments",
-          "$ref": "./function-schema.json#/definitions/$arguments"
-        },
-        {
           "title": "Output/Return",
           "$ref": "./function-schema.json#/definitions/$return"
+        },
+        {
+          "title": "Current Input/Arguments",
+          "$ref": "./function-schema.json#/definitions/$arguments"
         },
         {
           "title": "Output/Return",
