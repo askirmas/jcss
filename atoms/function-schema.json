@@ -3,10 +3,11 @@
     "$arguments": {
       "type": "array",
       "minItems": 1,
-      "maxItems": 1,
+      "maxItems": 2,
       "additionalItems": false,
       "items": [
-        {"$ref": "#/definitions/Atoms"}
+        {"$ref": "#/definitions/Atoms"},
+        {"$ref": "#/definitions/AtomsOptions"}
       ]
     },
     "$return": {
@@ -34,6 +35,12 @@
           {"$ref": "#/definitions/Atoms"}
         ]
       }
+    },
+    "AtomsOptions": {
+      "propertyNames": {
+        "enum": ["propSpace","propDelimiter","empty"]
+      },
+      "$ref": "../config.schema.json#/definitions/Config/definitions/properties"
     }
   }
 }

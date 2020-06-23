@@ -1,6 +1,10 @@
-import { Atoms } from "./def";
+import { Atoms, AtomsOptions } from "./def";
 import { notObject, isNotObject } from "../util-defs";
-import {propsDelimiter, empty} from "../config.json"
+import {
+  propDelimiter,
+  empty,
+  propSpace
+} from "../config.json"
 
 const {keys: $keys} = Object
 
@@ -8,15 +12,22 @@ export {
   atoms
 }
 
-function atoms<E extends notObject = notObject>(body: Atoms<E>) :[string, E][]{
+function atoms<E extends notObject = notObject>(
+  body: Atoms<E>,
+  {
+    propDelimiter: delimiter = propDelimiter, 
+    empty: emp = empty,
+    propSpace: _space = propSpace
+  }: AtomsOptions = {}
+) :[string, E][]{
   type Tuple = [keyof Atoms<E>, E|Atoms<E>]
   const stack = [undefined] as (undefined|Tuple)[]
   , $return: [string, E][] = []
-
+  , space = _space === emp ? emp : `${_space}${delimiter}`
   for (let i = 0; i < stack.length && i > -1; i++) {
     const task = stack[i]
     , source = task === undefined ? body : task[1]
-    , prop = task?.[0] ?? empty
+    , prop = task?.[0] ?? emp
     
     if (isNotObject(source)) {
       $return.push([prop, source])
@@ -24,7 +35,7 @@ function atoms<E extends notObject = notObject>(body: Atoms<E>) :[string, E][]{
       continue
     }
 
-    const scope = prop === empty ? empty : `${prop}${propsDelimiter}`
+    const scope = `${space}${prop}${prop === emp ? emp : delimiter}`
     , nextTasks = $keys(source) as Tuple[] | string[] 
     , {length} = nextTasks
 

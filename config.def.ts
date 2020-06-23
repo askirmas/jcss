@@ -8,5 +8,8 @@ export type Config = {
   "empty": string
   "brl": string
   "brr": string
-  "propsDelimiter": string
+  "propDelimiter": string
+  "propSpace": string
 }
+
+export type Configurable<P extends keyof Config> = Partial<Pick<Config, P>>

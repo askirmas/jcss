@@ -1,42 +1,62 @@
 {
-  "type": "object",
-  "required": [
-    "varPrefix",
-    "functionPrefix",
-    "cssVarPrefix",
-    "cssVarCallPrefix",
-    "comma",
-    "space",
-    "empty",
-    "brl",
-    "brr",
-    "propsDelimiter"
-  ],
-  "propertyNames": {"enum": [
-    "$schema",
-    "varPrefix",
-    "functionPrefix",
-    "cssVarPrefix",
-    "cssVarCallPrefix",
-    "comma",
-    "space",
-    "empty",
-    "brl",
-    "brr",
-    "propsDelimiter"
-  ]},
-  "additionalProperties": false,
-  "properties": {
-    "$schema": {"type": "string", "default": "./config.schema.json"},
-    "varPrefix": {"type": "string", "default": "$"},
-    "functionPrefix": {"type": "string", "default": "@"},
-    "cssVarPrefix": {"type": "string", "default": "--"},
-    "cssVarCallPrefix": {"type": "string", "default": "var"},
-    "comma": {"type": "string", "default": ","},
-    "space": {"type": "string", "default": " "},
-    "empty": {"type": "string", "default": ""},
-    "brl": {"type": "string", "default": "("},
-    "brr": {"type": "string", "default": ")"},
-    "propsDelimiter": {"type": "string", "default": "-"} 
+  "$ref": "#/definitions/Config",
+  "definitions": {
+    "Config": {
+      "type": "object",
+      "allOf": [
+        {"$ref": "#/definitions/Config/definitions/required"},
+        {"$ref": "#/definitions/Config/definitions/propertyNames"},
+        {"$ref": "#/definitions/Config/definitions/properties"}
+      ],
+      "definitions": {
+        "required": {
+          "required": [
+            "varPrefix",
+            "functionPrefix",
+            "cssVarPrefix",
+            "cssVarCallPrefix",
+            "comma",
+            "space",
+            "empty",
+            "brl",
+            "brr",
+            "propDelimiter",
+            "propSpace"
+          ]    
+        },
+        "propertyNames": {
+          "propertyNames": {"enum": [
+            "$schema",
+            "varPrefix",
+            "functionPrefix",
+            "cssVarPrefix",
+            "cssVarCallPrefix",
+            "comma",
+            "space",
+            "empty",
+            "brl",
+            "brr",
+            "propDelimiter",
+            "propSpace"
+          ]}  
+        },
+        "properties": {
+          "properties": {
+            "$schema": {"type": "string", "default": "./config.schema.json"},
+            "varPrefix": {"type": "string", "default": "$"},
+            "functionPrefix": {"type": "string", "default": "@"},
+            "cssVarPrefix": {"type": "string", "default": "--"},
+            "cssVarCallPrefix": {"type": "string", "default": "var"},
+            "comma": {"type": "string", "default": ","},
+            "space": {"type": "string", "default": " "},
+            "empty": {"type": "string", "default": ""},
+            "brl": {"type": "string", "default": "("},
+            "brr": {"type": "string", "default": ")"},
+            "propDelimiter": {"type": "string", "default": "-"},
+            "propSpace": {"type": "string", "default": ""}
+          }
+        }
+      }
+    }
   }
 }

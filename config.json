@@ -9,5 +9,6 @@
    "empty": "",
    "brl": "(",
    "brr": ")",
-   "propsDelimiter": "-"
+   "propDelimiter": "-",
+   "propSpace": ""
 }

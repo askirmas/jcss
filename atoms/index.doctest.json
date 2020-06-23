@@ -1,34 +1,34 @@
 {
   "$schema": "./doctest.schema.json",
   "Empties": [
-    ["DONE", "Empty source", [
+    ["UNST", "Empty source", [
       [],
       [{}]
     ]],
-    ["DONE", "Empty property", [
+    ["UNST", "Empty property", [
       [],
       [{"empty": {}}]
     ]],
-    ["DONE", "Empty property^2", [
+    ["UNST", "Empty property^2", [
       [],
       [{"empty": {"empty": {}}}]
     ]],
-    ["DONE", "Empty property", [
+    ["UNST", "Empty property", [
       [],
       [{"empty": {}}]
     ]],
-    ["DONE", "Empty properties", [
+    ["UNST", "Empty properties", [
       [],
       [{"empty": {}, "empty1": {"empty": {}}}]
     ]]
 
   ],
   "Flats": [
-    ["DONE", "1 prop", [
+    ["UNST", "1 prop", [
       [["prop", "x"]],
       [{"prop": "x"}]
     ]],
-    ["DONE", "scalars check", [
+    ["UNST", "scalars check", [
       [
         ["0", 0],
         ["null", null],
@@ -48,7 +48,7 @@
     ]]
   ],
   "Nested": [
-    ["DONE", "1", [
+    ["UNST", "1", [
       [
         ["border-top-width", [1, "px"]],
         ["border-style", "dashed"]
@@ -62,7 +62,7 @@
         }
       }]
     ]],
-    ["DONE", "Preserve order", [
+    ["UNST", "Preserve order", [
       [
         ["a", 0],
         ["b-c", "2"],
@@ -84,11 +84,11 @@
     ]]
   ],
   "Special": [
-    ["DONE", "@import", [
+    ["UNST", "@import", [
       [["@import", ["example.com", "xx"]]],
       [{"@import": ["example.com", "xx"]}]
     ]],
-    ["DONE", "@include", [
+    ["UNST", "@include", [
       [
         ["@include", [
           {
@@ -110,5 +110,75 @@
         ]
       }]
     ]]
+  ],
+  "Options": [
+    ["UNST", "Default `\"propSpace\": \"\"`", [
+      [
+        ["left", "50px"],
+        ["height", "50px"]
+      ],
+      [
+        {
+          "left": "50px",
+          "height": "50px"
+        },
+        {"propSpace": ""}
+      ]
+    ]],
+    ["UNST", "`\"propSpace\": \"padding\"`", [
+      [
+        ["padding-left", "50px"],
+        ["padding-height", "50px"]
+      ],
+      [
+        {
+          "left": "50px",
+          "height": "50px"
+        },
+        {"propSpace": "padding"}
+      ]
+    ]],
+    ["UNST", "Or variable `\"propSpace\": \"$rect\"`", [
+      [
+        ["$rect-left", "50px"],
+        ["$rect-height", "50px"]
+      ],
+      [
+        {
+          "left": "50px",
+          "height": "50px"
+        },
+        {"propSpace": "$rect"}
+      ]
+    ]]
+  ],
+  "Weird": [
+    ["UNST", "Delimiter underscore `\"propDelimiter\": \"_\"`", [
+      [
+        ["my_left", "50px"],
+        ["my_height", "50px"]
+      ],
+      [
+        {"my": {
+          "left": "50px",
+          "height": "50px"
+        }},
+        {"propDelimiter": "_"}
+      ]
+    ]],
+    ["BUG+", "Empty underscore `\"empty\": \"_\"`", [
+      [
+        ["--_my-left", "50px"],
+        ["--_my-height", "50px"]
+      ],
+      [
+        {"my": {
+          "left": "50px",
+          "height": "50px"
+        }},
+        {"empty": "_"}
+      ]
+    ]]    
+
   ]
 }
