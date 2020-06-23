@@ -15,16 +15,14 @@ export type DocTest<F extends Func, Status extends string = eStatus> = {
   ]>
 }
 
-const statusesTrue = new Set<eStatus>(["DONE", "LEG", "DEPR", "BUG-", "UNST"]) 
-, statusesFalse = new Set<eStatus>(["WONT", "TBD", "BUG+", "OPT", "PROP"])
+const statusesTrue = new Set(["DONE", "LEG", "DEPR", "BUG-", "UNST"]) 
+, statusesFalse = new Set(["WONT", "TBD", "BUG+", "OPT", "PROP"])
 
 export {
   makeNot
 }
 
-function makeNot(status: eStatus) :boolean;
-function makeNot(status: string) :undefined;
-function makeNot(status: any) {
+function makeNot(status: eStatus | string) :boolean|undefined {
   if (statusesTrue.has(status))
     return false
   if (statusesFalse.has(status))

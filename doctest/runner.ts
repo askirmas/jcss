@@ -1,8 +1,11 @@
-/* global describe it */
 import { Func } from "../util-defs"
 import { DocTest, makeNot, eStatus } from "./def"
 
-const ONLY = "ONLY"
+const args = new Set(process.argv)
+/* istanbul ignore next */
+, isWatching = args.has('--watch') || args.has('--watchAll')
+, ONLY = "ONLY"
+, SKIP = "SKIP"
 
 export default runner
 
@@ -20,36 +23,41 @@ function runner<F extends Func, S extends string = eStatus>(fn: F, suites: DocTe
       }
 
       incidentsData.forEach(suite => {
-        if (typeof suite === 'string')
-          return it.todo(suite)
-
-        const [status, description, [ret0, arg, ret1, argNew]] = suite
-        , isOnly = status === ONLY
-        , is = !makeNot(status)
-        , v1 = () => fn(...arg)
+        if (typeof suite === 'string') {
+          it.todo(suite)
+          return
+        }
         
         /* istanbul ignore next */
-        if (is === undefined)
+        const [status, description, [ret0, arg, ret1, argNew]] = suite
+        /* istanbul ignore next */
+        , isOnly = isWatching && status === ONLY
+        /* istanbul ignore next */
+        , isSkip = isWatching && status === SKIP
+        /* istanbul ignore next TODO it*/
+        , isNot = isOnly || isSkip ? false : makeNot(status)
+        
+        /* istanbul ignore next TODO it*/
+        if (isNot === undefined)
           throw Error(`Unknown status '${status}' @ ${name}/${description}`)
         
-        const expin = exp(is, v1, ret0)
+        const v1 = () => fn(...arg)
+        , expin = exp(!isNot, v1, ret0)
 
         if (ret1 === undefined)
-          (
-            /* istanbul ignore next */
-            isOnly ? it.only : it
-          )(description, expin)
-        else 
-          (
-            /* istanbul ignore next */
-            isOnly ? describe.only : describe
-          )(description, () => {
-            it('1', expin)
-            it('2', exp(!is, v1, ret1))
-            /* istanbul ignore next */
-            if (argNew !== undefined)
-              it('3', exp(is, () => fn(...argNew), ret1))
-          })
+          suiteMode(it, isSkip, isOnly)(
+            description, expin
+          )
+        else
+          suiteMode(describe, isSkip, isOnly)(
+            description, () => {
+              it('1', expin)
+              it('2', exp(isNot, v1, ret1))
+              /* istanbul ignore next */
+              if (argNew !== undefined)
+                it('3', exp(!isNot, () => fn(...argNew), ret1))
+            }
+          )
       })
     })
   }
@@ -65,3 +73,8 @@ function exp(is: boolean, i: any, o: any) {
     .toStrictEqual(o)
   }
 }
+
+/* istanbul ignore next */
+function suiteMode(source: typeof it | typeof describe, skip: boolean, only: boolean) {
+  return skip ? source.skip : only ? source.only : source
+} 
