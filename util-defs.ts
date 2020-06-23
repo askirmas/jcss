@@ -22,3 +22,23 @@ export type Dict<T extends JSScalar = JsonScalar> = {
 export type Structural<T extends JSScalar = JsonScalar> = T | T[] | Dict<T>
 
 export type Func<P extends any[] = any[], R extends any = any> = (...args: P) => R 
+
+export type notObject = JSScalar | any[]
+
+const {isArray: $isArray} = Array
+
+export {
+  // isObject,
+  isNotObject
+}
+
+// function isObject(source: JSScalar) :false
+// function isObject(source: any[]) :false
+// function isObject(source: any) :true
+// function isObject(source: any) :boolean {
+//   return typeof source === "object" && source !== null && !$isArray(source)
+// }
+
+function isNotObject(source: any) : source is notObject {
+  return typeof source !== "object" || source === null || $isArray(source)
+}

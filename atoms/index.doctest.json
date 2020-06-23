@@ -1,0 +1,86 @@
+{
+  "$schema": "./doctest.schema.json",
+  "Empties": [
+    ["DONE", "Empty source", [
+      [],
+      [{}]
+    ]],
+    ["DONE", "Empty property", [
+      [],
+      [{"empty": {}}]
+    ]],
+    ["DONE", "Empty property^2", [
+      [],
+      [{"empty": {"empty": {}}}]
+    ]],
+    ["DONE", "Empty property", [
+      [],
+      [{"empty": {}}]
+    ]],
+    ["DONE", "Empty properties", [
+      [],
+      [{"empty": {}, "empty1": {"empty": {}}}]
+    ]]
+
+  ],
+  "Flats": [
+    ["DONE", "1 prop", [
+      [["prop", "x"]],
+      [{"prop": "x"}]
+    ]],
+    ["DONE", "scalars check", [
+      [
+        ["0", 0],
+        ["null", null],
+        ["false", false],
+        ["string", "string"],
+        ["empty array", []],
+        ["not empty array", ["empty array"]]
+      ],
+      [{
+        "null": null,
+        "false": false,
+        "0": 0,
+        "string": "string",
+        "empty array": [],
+        "not empty array": ["empty array"]
+      }]
+    ]]
+  ],
+  "Nested": [
+    ["DONE", "1", [
+      [
+        ["border-top-width", [1, "px"]],
+        ["border-style", "dashed"]
+      ],
+      [{
+        "border": {
+          "top": {
+            "width": [1, "px"]
+          },
+          "style": "dashed"
+        }
+      }]
+    ]],
+    ["DONE", "Preserve order", [
+      [
+        ["a", 0],
+        ["b-c", "2"],
+        ["b-d-e", null],
+        ["b-f", [4]],
+        ["g", 5]
+      ],
+      [{
+        "a": 0,
+        "b": {
+          "c": "2",
+          "d": {
+            "e": null
+          },
+          "f": [4]
+        },
+        "g": 5
+      }]
+    ]]
+  ]
+}
