@@ -152,6 +152,22 @@
       ]
     ]]
   ],
+  "Order adjustment": [
+    ["PROP", "`border` example", [
+      [
+        ["border-top-width", "2px"],
+        ["border-left-width", "1px"]
+      ],
+      [
+        {"border": {
+          "width": {
+            "top": "2px",
+            "left": "1px"
+          }
+        }}
+      ]
+    ]]
+  ],
   "Weird": [
     ["UNST", "Delimiter underscore `\"propDelimiter\": \"_\"`", [
       [
@@ -178,7 +194,6 @@
         }},
         {"empty": "_"}
       ]
-    ]]    
-
+    ]]
   ]
 }
