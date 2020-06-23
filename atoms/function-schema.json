@@ -1,8 +1,39 @@
 {
   "definitions": {
     "$arguments": {
-      "type": "array"
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "additionalItems": false,
+      "items": [
+        {"$ref": "#/definitions/Atoms"}
+      ]
     },
-    "$return": {}
+    "$return": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "additionalItems": false,  
+        "items": [
+          {"type": "string"},
+          {"$ref": "#/definitions/notObject"}
+        ]
+      }
+    },
+    "notObject": {
+      "type": ["array", "string", "number", "boolean", "null"]
+    },
+    "Atoms": {
+      "decription": "Atomic description",
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {"$ref": "#/definitions/notObject"},
+          {"$ref": "#/definitions/Atoms"}
+        ]
+      }
+    }
   }
 }

@@ -82,5 +82,33 @@
         "g": 5
       }]
     ]]
+  ],
+  "Special": [
+    ["DONE", "@import", [
+      [["@import", ["example.com", "xx"]]],
+      [{"@import": ["example.com", "xx"]}]
+    ]],
+    ["DONE", "@include", [
+      [
+        ["@include", [
+          {
+            "myFunc": ["arg1", "arg2"],
+            "myAnotherFunction": "x"
+          },
+          "my3rdFunction",
+          {"myLastFunction": null}
+        ]]
+      ],
+      [{
+        "@include": [
+          {
+            "myFunc": ["arg1", "arg2"],
+            "myAnotherFunction": "x"
+          },
+          "my3rdFunction",
+          {"myLastFunction": null}
+        ]
+      }]
+    ]]
   ]
 }
