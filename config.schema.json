@@ -9,7 +9,8 @@
     "space",
     "empty",
     "brl",
-    "brr"
+    "brr",
+    "propsDelimiter"
   ],
   "propertyNames": {"enum": [
     "$schema",
@@ -21,7 +22,8 @@
     "space",
     "empty",
     "brl",
-    "brr"
+    "brr",
+    "propsDelimiter"
   ]},
   "additionalProperties": false,
   "properties": {
@@ -34,6 +36,7 @@
     "space": {"type": "string", "default": " "},
     "empty": {"type": "string", "default": ""},
     "brl": {"type": "string", "default": "("},
-    "brr": {"type": "string", "default": ")"} 
+    "brr": {"type": "string", "default": ")"},
+    "propsDelimiter": {"type": "string", "default": "-"} 
   }
 }

@@ -8,5 +8,6 @@
    "space": " ",
    "empty": "",
    "brl": "(",
-   "brr": ")"
+   "brr": ")",
+   "propsDelimiter": "-"
 }

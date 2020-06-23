@@ -9,7 +9,7 @@ import {
   empty,
   brl,
   brr
-} from "./config.json"
+} from "../config.json"
 import { $typeof } from "../typeof";
 import { isUnit } from "../schemas/length-unit"
 import { isCommaSeparated } from "../schemas/function";

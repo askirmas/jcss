@@ -1,9 +1,8 @@
 import { Atoms } from "./def";
 import { notObject, isNotObject } from "../util-defs";
+import {propsDelimiter, empty} from "../config.json"
 
 const {keys: $keys} = Object
-, propsDelimiter = "-"
-, emptyString = ''
 
 export {
   atoms
@@ -17,7 +16,7 @@ function atoms<E extends notObject = notObject>(body: Atoms<E>) :[string, E][]{
   for (let i = 0; i < stack.length && i > -1; i++) {
     const task = stack[i]
     , source = task === undefined ? body : task[1]
-    , prop = task?.[0] ?? emptyString
+    , prop = task?.[0] ?? empty
     
     if (isNotObject(source)) {
       $return.push([prop, source])
@@ -25,7 +24,7 @@ function atoms<E extends notObject = notObject>(body: Atoms<E>) :[string, E][]{
       continue
     }
 
-    const scope = prop === emptyString ? emptyString : `${prop}${propsDelimiter}`
+    const scope = prop === empty ? empty : `${prop}${propsDelimiter}`
     , nextTasks = $keys(source) as Tuple[] | string[] 
     , {length} = nextTasks
 
