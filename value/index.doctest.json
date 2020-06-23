@@ -199,14 +199,26 @@
   "variable with default as object": [
     ["DONE", "", [
       "var(--var, 0px)",
+      [[{"$var": ["0px"]}]]
+    ]],
+    ["UNST", "Default value as string", [
+      "var(--var, 0px)",
+      [[{"$var": "0px"}]]
+    ]],
+    ["PROP", "String may be key", [
+      "var(--var-0px)",
       [[{"$var": "0px"}]]
     ]],
     ["DONE", "", [
       "var(--var, 0px)",
       [[{"$var": [0, "px"]}]]
     ]],
-    ["DONE", "", [
+    ["UNST", "Default value is another variable with default value", [
       "var(--v1, var(--v2, 0px))",
+      [[{"$v1": {"$v2": [0, "px"]}}]]
+    ]],
+    ["PROP", "Nested object may be treated as key", [
+      "var(--v1$v2, 0px))",
       [[{"$v1": {"$v2": [0, "px"]}}]]
     ]]
   ],
